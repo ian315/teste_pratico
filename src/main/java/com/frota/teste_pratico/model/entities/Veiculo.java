@@ -1,32 +1,32 @@
-package com.frota.teste_pratico.main.model.entities;
+package com.frota.teste_pratico.model.entities;
 
-import com.frota.teste_pratico.main.model.enums.pneuStatusEnum;
+import com.frota.teste_pratico.model.enums.veiculoStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "pneu")
+@Table(name = "veiculo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class Pneu {
+public class Veiculo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
 
-    @Column(name = "numero_fogo")
-    private String numeroDeFogo;
+    @Column(name = "placa")
+    private String placa;
 
     @Column(name = "marca")
     private String marca;
 
     @Column(name = "quilometragem")
-    private Float pressao;
+    private int quilometragem;// QUILOMETRAGEM (KM)
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
-    private pneuStatusEnum STATUS;
+    private veiculoStatusEnum STATUS;// STATUS (ativo ou inativo)
 }

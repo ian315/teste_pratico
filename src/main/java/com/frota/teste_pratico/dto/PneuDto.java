@@ -1,6 +1,6 @@
-package com.frota.teste_pratico.main.dto;
+package com.frota.teste_pratico.dto;
 
-import com.frota.teste_pratico.main.model.enums.pneuStatusEnum;
+import com.frota.teste_pratico.model.enums.pneuStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -1,4 +1,4 @@
-package com.frota.teste_pratico.main;
+package com.frota.teste_pratico;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
