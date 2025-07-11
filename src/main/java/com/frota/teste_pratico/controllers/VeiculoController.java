@@ -1,6 +1,5 @@
 package com.frota.teste_pratico.controllers;
 
-import com.frota.teste_pratico.dto.VeiculoDto;
 import com.frota.teste_pratico.service.VeiculoService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
