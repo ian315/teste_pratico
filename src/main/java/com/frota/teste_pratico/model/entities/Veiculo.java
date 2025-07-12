@@ -29,4 +29,7 @@ public class Veiculo {
     @Enumerated(EnumType.STRING)
     @Column(name = "status")
     private veiculoStatusEnum STATUS;// STATUS (ativo ou inativo)
+
+    @Column(name = "quantidade_eixos")
+    private int quantidadeDeEixos;
 }
