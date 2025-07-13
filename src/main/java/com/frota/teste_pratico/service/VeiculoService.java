@@ -22,6 +22,8 @@ public class VeiculoService {
     private VeiculoRepository repo;
 
     public InserirVeiculoResponse cadastraVeiculo(InserirVeiculoRequest veiculoRequest) {
+        if(veiculoRequest == null)  throw  new DataIntegrityViolationException("null");
+
         if(repo.findByPlaca(veiculoRequest.getPlaca()).isPresent() ) {
             throw  new DataIntegrityViolationException("Placa: " + veiculoRequest.getPlaca() + " já existente");
         }
@@ -36,16 +38,5 @@ public class VeiculoService {
                 .map(veiculoMapper::toResponseDto)
                 .collect(Collectors.toList());
 
-    }
-
-    private InserirVeiculoResponse toDto(Veiculo veiculo) {
-        return new InserirVeiculoResponse(
-                veiculo.getId(),
-                veiculo.getPlaca(),
-                veiculo.getMarca(),
-                veiculo.getQuilometragem(),
-                veiculo.getStatus(),
-                veiculo.getQuantidadeDePneus()
-        );
     }
 }

@@ -10,12 +10,12 @@ public class PneuService {
     }
 
     private PneuDto toDto(Pneu pneu) {
-        return new Pne(
+        return new PneuDto(
                 pneu.getId(),
-                pneu.getNumeroDeFogo()
+                pneu.getNumeroFogo(),
                 pneu.getMarca(),
-                pneu.getSTATUS(),
                 pneu.getPressao(),
+                pneu.getStatus()
         );
     }
 }

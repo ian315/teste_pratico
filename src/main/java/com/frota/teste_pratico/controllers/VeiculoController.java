@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/frota/veiculo")
+@RequestMapping("/frota/veiculos")
 public class VeiculoController {
 
     @Autowired
@@ -26,11 +26,11 @@ public class VeiculoController {
     }
 
     //2. Endpoint para consultar um veículo específico (com pneus)
-    @GetMapping("/{placa}")
-    public ResponseEntity<VeiculoPneuDto> GetVeiculoByPlaca(@PathVariable("placa") String placa) {
-
-        return new ResponseEntity<>(placa, HttpStatus.OK);
-    }
+//    @GetMapping("/{placa}")
+//    public ResponseEntity<VeiculoPneuDto> GetVeiculoByPlaca(@PathVariable("placa") String placa) {
+//
+//        return new ResponseEntity<>(placa, HttpStatus.OK);
+//    }
 
     //3. Endpoint para inserir um veículo específico
     @PostMapping(path = "/inserir")

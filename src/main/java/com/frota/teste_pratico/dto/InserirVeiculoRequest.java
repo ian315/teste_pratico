@@ -14,14 +14,14 @@ import lombok.NoArgsConstructor;
 public class InserirVeiculoRequest {
 
     private String placa;
-    private Marca marca;
+    private Long marcaId;
     private int quilometragem;
     private VeiculoStatusEnum status;
     private int quantidadeDePneus;
 
     public InserirVeiculoRequest(Veiculo veiculo) {
         this.placa = veiculo.getPlaca();
-        this.marca = veiculo.getMarca();
+        this.marcaId = veiculo.getMarca().getId();
         this.quilometragem = veiculo.getQuilometragem();
         this.status = veiculo.getStatus();
         this.quantidadeDePneus = veiculo.getQuantidadeDePneus();

@@ -1,7 +1,0 @@
-CREATE TABLE IF NOT EXISTS veiculo (
-    id SERIAL PRIMARY KEY,
-    placa VARCHAR(10) UNIQUE NOT NULL,
-    marca VARCHAR(50) NOT NULL,
-    quilometragem INTEGER NOT NULL,
-    status VARCHAR(10) NOT NULL
-);

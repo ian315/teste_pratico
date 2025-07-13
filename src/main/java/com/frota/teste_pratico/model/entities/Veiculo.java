@@ -18,7 +18,7 @@ import java.util.List;
 public class Veiculo {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "placa", nullable = false)
@@ -40,6 +40,6 @@ public class Veiculo {
     @Column(name = "quantidade_pneus", nullable = false)
     private int quantidadeDePneus;
 
-    @OneToMany(mappedBy = "pneus", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
-    private List<Pneu> pneus = new ArrayList<>();
+    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<VeiculoPneu> pneus = new ArrayList<>();
 }

@@ -4,8 +4,9 @@ import com.frota.teste_pratico.dto.InserirVeiculoRequest;
 import com.frota.teste_pratico.dto.InserirVeiculoResponse;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import org.mapstruct.Mapper;
+import org.mapstruct.ReportingPolicy;
 
-@Mapper
+@Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE) // <--- Adicione essas configurações
 public interface VeiculoMapper {
 
     Veiculo toEntity(InserirVeiculoRequest inserirVeiculoRequest);
