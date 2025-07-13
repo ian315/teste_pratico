@@ -1,6 +1,5 @@
 package com.frota.teste_pratico.dto;
 
-import com.frota.teste_pratico.model.entities.Marca;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
 import lombok.AllArgsConstructor;
@@ -15,7 +14,7 @@ public class InserirVeiculoResponse {
 
     private Long id;
     private String placa;
-    private Marca marca;
+    private String marca;
     private int quilometragem;
     private VeiculoStatusEnum status;
     private int quantidadeDePneus;

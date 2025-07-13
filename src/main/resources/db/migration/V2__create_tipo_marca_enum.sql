@@ -1,1 +1,0 @@
-CREATE TYPE tipo_marca_enum AS ENUM ('VEICULO', 'PNEU');

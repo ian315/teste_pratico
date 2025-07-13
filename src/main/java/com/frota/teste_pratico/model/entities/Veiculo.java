@@ -26,7 +26,7 @@ public class Veiculo {
 
     @ManyToOne
     @JoinColumn(name = "marca_id", nullable = false)
-    private Marca marca;
+    private String marca;
 
     @Column(name = "quilometragem", nullable = false)
     private int quilometragem;

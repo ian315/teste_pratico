@@ -21,8 +21,8 @@ public class Pneu {
     private String numeroFogo;
 
     @ManyToOne
-    @JoinColumn(name = "marca_id", nullable = false)
-    private Marca marca;
+    @JoinColumn(name = "marca", nullable = false)
+    private String marca;
 
     @Column(name = "quilometragem", nullable = false)
     private Float pressao;
