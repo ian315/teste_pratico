@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.model.entities;
 
-import com.frota.teste_pratico.model.enums.pneuStatusEnum;
+import com.frota.teste_pratico.model.enums.PneuStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -15,18 +15,20 @@ public class Pneu {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    @Column(name = "numero_fogo")
-    private String numeroDeFogo;
+    @Column(name = "numero_fogo", nullable = false)
+    private String numeroFogo;
 
-    @Column(name = "marca")
-    private String marca;
+    @ManyToOne
+    @JoinColumn(name = "marca_id", nullable = false)
+    private Marca marca;
 
-    @Column(name = "quilometragem")
+    @Column(name = "quilometragem", nullable = false)
     private Float pressao;
 
+    //talvez um ponto de avaliação
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private pneuStatusEnum STATUS;
+    @Column(name = "status", nullable = false)
+    private PneuStatusEnum status;
 }

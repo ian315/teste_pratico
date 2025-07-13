@@ -18,13 +18,13 @@ public class VeiculoPneu {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "veiculo_id")
+    @JoinColumn(name = "veiculo_id", nullable = false)
     private Veiculo veiculo;
 
     @ManyToOne
-    @JoinColumn(name = "pneu_id")
+    @JoinColumn(name = "pneu_id", nullable = false)
     private Pneu pneu;
 
-    @Column(name = "posicao_pneu")
-    private char posicao;
+    @Column(name = "posicao_pneu", nullable = false)
+    private int posicao;
 }

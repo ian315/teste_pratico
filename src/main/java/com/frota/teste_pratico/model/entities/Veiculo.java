@@ -1,35 +1,45 @@
 package com.frota.teste_pratico.model.entities;
 
-import com.frota.teste_pratico.model.enums.veiculoStatusEnum;
+import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.context.annotation.Lazy;
+
+import java.util.ArrayList;
+import java.util.List;
 
 @Entity
-@Table(name = "veiculo")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
+@Table(name = "veiculo")
 public class Veiculo {
 
     @Id
     @GeneratedValue(strategy= GenerationType.AUTO)
-    private int id;
+    private Long id;
 
-    @Column(name = "placa")
+    @Column(name = "placa", nullable = false)
     private String placa;
 
-    @Column(name = "marca")
-    private String marca;
+    @ManyToOne
+    @JoinColumn(name = "marca_id", nullable = false)
+    private Marca marca;
 
-    @Column(name = "quilometragem")
-    private int quilometragem;// QUILOMETRAGEM (KM)
+    @Column(name = "quilometragem", nullable = false)
+    private int quilometragem;
 
+    //CASO NAO HAJA A POSSIBILIDADE DE ADICIONAR OUTRO STATUS, SERIA MAIS VIÁVEL FAZER UM BOOLEANO
     @Enumerated(EnumType.STRING)
-    @Column(name = "status")
-    private veiculoStatusEnum STATUS;// STATUS (ativo ou inativo)
+    @Column(name = "status",nullable = false)
+    private VeiculoStatusEnum status;
 
-    @Column(name = "quantidade_eixos")
-    private int quantidadeDeEixos;
+    //SERIA VIÁVEL FAZER UMA TABELA DE TIPO OU MODELO DO VEICULO PARA NAO DEPENDER QUE O USUÁRIO DEFINA A QUANTIDADE DE RODAS
+    @Column(name = "quantidade_pneus", nullable = false)
+    private int quantidadeDePneus;
+
+    @OneToMany(mappedBy = "pneus", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    private List<Pneu> pneus = new ArrayList<>();
 }

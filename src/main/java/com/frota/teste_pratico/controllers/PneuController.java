@@ -11,15 +11,16 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/urlPneu")
+@RequestMapping("/frota/pneu")
 public class PneuController {
 
     @Autowired
-    private PneuService pneuService;
+    private PneuService service;
 
-    @PostMapping(name = "/pneu/inserir")
+    //4. Endpoint para inserir um pneu específico
+    @PostMapping(name = "frota/pneu/inserir")
     public ResponseEntity<PneuDto> inserirPneu(@RequestBody PneuDto pneuDto) {
-        pneuService.inserirPneu(pneuDto);
+        service.inserirPneu(pneuDto);
         return new ResponseEntity<>(pneuDto,HttpStatus.OK);
     }
 }

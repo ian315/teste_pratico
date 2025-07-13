@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class VeiculoPneuDto {
 
-    private VeiculoDto veiculoDto;
+    private InserirVeiculoResponse veiculoDto;
     private PneuDto pneuDto;
     private char posicao;
 }
