@@ -89,7 +89,6 @@ class VeiculoServiceTest {
         BuscarVeiculoPorPlacaComPneusResponse response = new BuscarVeiculoPorPlacaComPneusResponse();
 
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
-        when(veiculoRepository.findByIdWithPneus(id)).thenReturn(veiculo);
         when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(response);
 
         BuscarVeiculoPorPlacaComPneusResponse result = veiculoService.getVeiculoById(id);
