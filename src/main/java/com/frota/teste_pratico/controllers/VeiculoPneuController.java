@@ -21,7 +21,7 @@ public class VeiculoPneuController {
     //5. Endpoint para vincular um pneu em um veículo
     @PostMapping("/inserir")
     public ResponseEntity<InserirPneuNoVeiculoValidandoPosicaoResponse> adicionarPneuAoVeiculo(
-            @RequestBody InserirPneuVeiculoRequest request) {
+            @Valid @RequestBody InserirPneuVeiculoRequest request) {
 
         return new ResponseEntity<>(service.insertPneuVeiculoComPosicao(request), HttpStatus.OK);
     }

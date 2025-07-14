@@ -31,6 +31,7 @@ class PneuServiceTest {
         MockitoAnnotations.openMocks(this);
     }
 
+    //TESTE 1: Deve inserir pneu com sucesso
     @Test
     void deveInserirPneuComSucesso() {
         InserirPneuRequest request = new InserirPneuRequest();
@@ -50,6 +51,7 @@ class PneuServiceTest {
         verify(pneuRepository).save(pneuEntity);
     }
 
+    //TESTE 2: Deve enviar exceção
     @Test
     void deveLancarExcecaoQuandoNumeroFogoJaExiste() {
         InserirPneuRequest request = new InserirPneuRequest();

@@ -5,6 +5,7 @@ import com.frota.teste_pratico.dto.veiculo.BuscarVeiculoPorPlacaComPneusResponse
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
 import com.frota.teste_pratico.service.VeiculoService;
+import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +22,8 @@ public class VeiculoController {
 
     //1. Endpoint para inserir um veículo específico
     @PostMapping(path = "/inserir")
-    public ResponseEntity<InserirVeiculoResponse> cadastraVeiculo(@RequestBody InserirVeiculoRequest veiculoRequest) {
+    public ResponseEntity<InserirVeiculoResponse> cadastraVeiculo(
+            @Valid @RequestBody InserirVeiculoRequest veiculoRequest) {
 
         return new ResponseEntity<>(service.cadastraVeiculo(veiculoRequest), HttpStatus.OK);
     }
