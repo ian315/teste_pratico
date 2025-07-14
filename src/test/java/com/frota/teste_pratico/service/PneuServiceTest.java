@@ -33,7 +33,6 @@ class PneuServiceTest {
 
     @Test
     void deveInserirPneuComSucesso() {
-        // Arrange
         InserirPneuRequest request = new InserirPneuRequest();
         request.setNumeroFogo(123L);
 
@@ -45,28 +44,24 @@ class PneuServiceTest {
         when(pneuRepository.save(pneuEntity)).thenReturn(pneuEntity);
         when(pneuMapper.toResponseDtoFromEntity(pneuEntity)).thenReturn(expectedResponse);
 
-        // Act
         InserirPneuResponse response = pneuService.inserirPneu(request);
 
-        // Assert
         assertEquals(expectedResponse, response);
         verify(pneuRepository).save(pneuEntity);
     }
 
     @Test
     void deveLancarExcecaoQuandoNumeroFogoJaExiste() {
-        // Arrange
         InserirPneuRequest request = new InserirPneuRequest();
         request.setNumeroFogo(456L);
 
         when(pneuRepository.findByNumeroFogo(456L)).thenReturn(Optional.of(new Pneu()));
 
-        // Act & Assert
-        DataIntegrityViolationException ex = assertThrows(DataIntegrityViolationException.class, () -> {
+        DataIntegrityViolationException exception = assertThrows(DataIntegrityViolationException.class, () -> {
             pneuService.inserirPneu(request);
         });
 
-        assertTrue(ex.getMessage().contains("456"));
+        assertTrue(exception.getMessage().contains("456"));
         verify(pneuRepository, never()).save(any());
     }
 }
