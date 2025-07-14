@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindAllVeiculosResponse {
+public class BuscarTodosVeiculosResponse {
 
     private Long id;
     private String placa;

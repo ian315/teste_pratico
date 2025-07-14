@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindVeiculoPneuResponseSemVeiculo {
+public class BuscarVeiculoPneuResponseSemVeiculo {
 
     private BuscarPneuSemVeiculoResponse pneu;
     private int posicao;

@@ -13,7 +13,7 @@ public interface VeiculoRepository extends JpaRepository<Veiculo, Long> {
     @Query("""
     SELECT v FROM Veiculo v
     JOIN v.pneus
-    WHERE v.placa = :placa
+    WHERE v.id = :id
 """)
-    Veiculo findByPlacaWithPneus(@Param("placa") String placa);
+    Veiculo findByIdWithPneus(@Param("id") Long id);
 }

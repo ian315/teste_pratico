@@ -1,8 +1,8 @@
 package com.frota.teste_pratico.service;
 
-import com.frota.teste_pratico.dto.veiculo_pneu.InsertPneuNoVeiculoValidandoPosicaoResponse;
-import com.frota.teste_pratico.dto.veiculo_pneu.InsertPneuVeiculoRequest;
-import com.frota.teste_pratico.dto.veiculo_pneu.RemovePneuFromVeiculoRequest;
+import com.frota.teste_pratico.dto.veiculo_pneu.InserirPneuNoVeiculoValidandoPosicaoResponse;
+import com.frota.teste_pratico.dto.veiculo_pneu.InserirPneuVeiculoRequest;
+import com.frota.teste_pratico.dto.veiculo_pneu.RemoverPneuDoVeiculoRequest;
 import com.frota.teste_pratico.mapper.PneuMapper;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
@@ -15,8 +15,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
-import java.util.Objects;
 
 
 @Service
@@ -38,7 +36,7 @@ public class VeiculoPneuService {
     private PneuRepository pneuRepository;
 
     @Transactional
-    public InsertPneuNoVeiculoValidandoPosicaoResponse insertPneuVeiculoComPosicao(InsertPneuVeiculoRequest request) {
+    public InserirPneuNoVeiculoValidandoPosicaoResponse insertPneuVeiculoComPosicao(InserirPneuVeiculoRequest request) {
 
         Veiculo veiculo = veiculoRepository.findById(request.getVeiculoId()).orElseThrow(()->  new DataIntegrityViolationException("Veiculo não existe"));
         Pneu pneu = pneuRepository.findById(request.getPneuId()).orElseThrow(() -> new DataIntegrityViolationException("Pneu não existe"));
@@ -58,14 +56,14 @@ public class VeiculoPneuService {
         VeiculoPneu veiculoPneu = new VeiculoPneu(veiculo, pneu, request.getPosicao());
         veiculoPneuRepository.save(veiculoPneu);
 
-        return new InsertPneuNoVeiculoValidandoPosicaoResponse(
+        return new InserirPneuNoVeiculoValidandoPosicaoResponse(
                         veiculoMapper.toResponseFromInsertPneuEmVeiculo(veiculo),
                         pneuMapper.toInsertResponsePneuOnVeiculoFromEntity(pneu),
                         request.getPosicao());
     }
 
     @Transactional
-    public void removePneuFromVeiculo(RemovePneuFromVeiculoRequest request) {
+    public void removePneuFromVeiculo(RemoverPneuDoVeiculoRequest request) {
 
         //testar existsBy para retornar um boolean
         if(veiculoPneuRepository.findByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId()).isEmpty())

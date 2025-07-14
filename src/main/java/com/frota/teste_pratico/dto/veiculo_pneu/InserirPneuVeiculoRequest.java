@@ -7,7 +7,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InsertPneuVeiculoRequest {
+public class InserirPneuVeiculoRequest {
 
     private Long veiculoId;
     private Long pneuId;

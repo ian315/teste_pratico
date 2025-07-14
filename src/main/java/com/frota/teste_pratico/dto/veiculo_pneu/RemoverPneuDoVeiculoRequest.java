@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class RemovePneuFromVeiculoRequest {
+public class RemoverPneuDoVeiculoRequest {
 
     @NotNull(message = "ID do veículo não pode ser nulo.")
     private Long veiculoId;

@@ -1,9 +1,7 @@
 package com.frota.teste_pratico.repository;
 
-import com.frota.teste_pratico.dto.veiculo_pneu.RemovePneuFromVeiculoRequest;
 import com.frota.teste_pratico.model.entities.VeiculoPneu;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.http.ResponseEntity;
 
 import java.util.Optional;
 

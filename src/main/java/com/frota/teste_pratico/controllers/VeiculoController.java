@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.controllers;
 
-import com.frota.teste_pratico.dto.veiculo.FindAllVeiculosResponse;
-import com.frota.teste_pratico.dto.veiculo.FindVeiculoByPlacaWithPneusResponse;
+import com.frota.teste_pratico.dto.veiculo.BuscarTodosVeiculosResponse;
+import com.frota.teste_pratico.dto.veiculo.BuscarVeiculoPorPlacaComPneusResponse;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
 import com.frota.teste_pratico.service.VeiculoService;
@@ -19,23 +19,23 @@ public class VeiculoController {
     @Autowired
     private VeiculoService service;
 
-    //3. Endpoint para inserir um veículo específico
+    //1. Endpoint para inserir um veículo específico
     @PostMapping(path = "/inserir")
     public ResponseEntity<InserirVeiculoResponse> cadastraVeiculo(@RequestBody InserirVeiculoRequest veiculoRequest) {
 
         return new ResponseEntity<>(service.cadastraVeiculo(veiculoRequest), HttpStatus.OK);
     }
 
-    //1. Endpoint para consultar todos os veículos (uma listagem)
+    //2. Endpoint para consultar todos os veículos (uma listagem)
     @GetMapping("/findall")
-    public ResponseEntity<List<FindAllVeiculosResponse>> buscaTodosVeiculos() {
+    public ResponseEntity<List<BuscarTodosVeiculosResponse>> buscaTodosVeiculos() {
         return new ResponseEntity<>(service.buscaTodosVeiculos(), HttpStatus.OK);
     }
 
-//    2. Endpoint para consultar um veículo específico (com pneus)
+    //3. Endpoint para consultar um veículo específico (com pneus)
     @GetMapping("findby")
-    public ResponseEntity<FindVeiculoByPlacaWithPneusResponse> GetVeiculoByPlaca(@RequestParam("placa") String placa) {
+    public ResponseEntity<BuscarVeiculoPorPlacaComPneusResponse> getVeiculoPorPlaca(@RequestParam("id") Long id) {
 
-        return new ResponseEntity<>(service.getVeiculoByPlaca(placa), HttpStatus.OK);
+        return new ResponseEntity<>(service.getVeiculoById(id), HttpStatus.OK);
     }
 }

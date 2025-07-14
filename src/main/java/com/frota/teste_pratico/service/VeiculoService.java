@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.service;
 
-import com.frota.teste_pratico.dto.veiculo.FindAllVeiculosResponse;
-import com.frota.teste_pratico.dto.veiculo.FindVeiculoByPlacaWithPneusResponse;
+import com.frota.teste_pratico.dto.veiculo.BuscarTodosVeiculosResponse;
+import com.frota.teste_pratico.dto.veiculo.BuscarVeiculoPorPlacaComPneusResponse;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
@@ -13,7 +13,6 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.Optional;
 import java.util.stream.Collectors;
 
 @Service
@@ -35,19 +34,19 @@ public class VeiculoService {
         return veiculoMapper.toResponseDtoFromEntity(veiculo);
     }
 
-    public List<FindAllVeiculosResponse> buscaTodosVeiculos() {
+    public List<BuscarTodosVeiculosResponse> buscaTodosVeiculos() {
 
         return repo.findAll().stream()
                 .map(veiculoMapper::toFindAllResponseDtoFromEntity)
                 .collect(Collectors.toList());
     }
 
-    public FindVeiculoByPlacaWithPneusResponse getVeiculoByPlaca(String placa) {
-        if(repo.findByPlaca(placa).isEmpty() ) {
-            throw  new DataIntegrityViolationException("Placa: " + placa + " não existe");
+    public BuscarVeiculoPorPlacaComPneusResponse getVeiculoById(Long id) {
+        if(repo.findById(id).isEmpty() ) {
+            throw  new DataIntegrityViolationException("o Veiculo de: " + id + " não existe");
         }
 
-        Veiculo veiculo = repo.findByPlacaWithPneus(placa);
+        Veiculo veiculo = repo.findByIdWithPneus(id);
         return veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo);
     }
 }
