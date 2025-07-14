@@ -112,11 +112,14 @@ class VeiculoServiceTest {
     @Test
     void deveMostrarVeiculoComListaDePneusVaziaSeNaoTiverPneuCadastrado() {
         Long id = 99L;
-        Veiculo veiculo = new Veiculo(99L, "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
-        BuscarVeiculoPorPlacaComPneusResponse teste = new BuscarVeiculoPorPlacaComPneusResponse("PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
+        Veiculo veiculo = new Veiculo(
+                99L, "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
+
+        BuscarVeiculoPorPlacaComPneusResponse dto = new BuscarVeiculoPorPlacaComPneusResponse(
+                "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
 
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
-        when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(teste);
+        when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(dto);
 
         BuscarVeiculoPorPlacaComPneusResponse response = veiculoService.getVeiculoById(id);
 
