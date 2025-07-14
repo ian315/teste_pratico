@@ -1,11 +1,12 @@
 package com.frota.teste_pratico.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
-import org.springframework.context.annotation.Lazy;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -24,8 +25,7 @@ public class Veiculo {
     @Column(name = "placa", nullable = false)
     private String placa;
 
-    @ManyToOne
-    @JoinColumn(name = "marca_id", nullable = false)
+    @Column(name = "marca")
     private String marca;
 
     @Column(name = "quilometragem", nullable = false)
@@ -41,5 +41,6 @@ public class Veiculo {
     private int quantidadeDePneus;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @JsonManagedReference
     private List<VeiculoPneu> pneus = new ArrayList<>();
 }

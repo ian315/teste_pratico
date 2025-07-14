@@ -1,4 +1,4 @@
-package com.frota.teste_pratico.dto;
+package com.frota.teste_pratico.dto.pneu;
 
 import com.frota.teste_pratico.model.enums.PneuStatusEnum;
 import lombok.AllArgsConstructor;
@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class PneuDto {
+public class InserirPneuResponse {
 
     private Long id;
-    private String numeroDeFogo;
+    private String numeroFogo;
     private String marca;
     private Float pressao;
-    private PneuStatusEnum STATUS;
+    private PneuStatusEnum status;
 }

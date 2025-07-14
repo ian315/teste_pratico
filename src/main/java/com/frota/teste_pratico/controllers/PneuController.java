@@ -1,6 +1,7 @@
 package com.frota.teste_pratico.controllers;
 
-import com.frota.teste_pratico.dto.PneuDto;
+import com.frota.teste_pratico.dto.pneu.InserirPneuRequest;
+import com.frota.teste_pratico.dto.pneu.InserirPneuResponse;
 import com.frota.teste_pratico.service.PneuService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -18,9 +19,9 @@ public class PneuController {
     private PneuService service;
 
     //4. Endpoint para inserir um pneu específico
-    @PostMapping(name = "frota/pneu/inserir")
-    public ResponseEntity<PneuDto> inserirPneu(@RequestBody PneuDto pneuDto) {
-        service.inserirPneu(pneuDto);
-        return new ResponseEntity<>(pneuDto,HttpStatus.OK);
+    @PostMapping(path = "/inserir")
+    public ResponseEntity<InserirPneuResponse> inserirPneu(@RequestBody InserirPneuRequest inserirPneuRequest) {
+
+        return new ResponseEntity<>(service.inserirPneu(inserirPneuRequest), HttpStatus.OK);
     }
 }

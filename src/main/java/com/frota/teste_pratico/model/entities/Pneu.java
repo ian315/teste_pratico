@@ -14,17 +14,16 @@ import lombok.NoArgsConstructor;
 public class Pneu {
 
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "numero_fogo", nullable = false)
-    private String numeroFogo;
+    private Long numeroFogo;
 
-    @ManyToOne
-    @JoinColumn(name = "marca", nullable = false)
+    @Column(name = "marca", nullable = false)
     private String marca;
 
-    @Column(name = "quilometragem", nullable = false)
+    @Column(name = "pressao", nullable = false)
     private Float pressao;
 
     //talvez um ponto de avaliação

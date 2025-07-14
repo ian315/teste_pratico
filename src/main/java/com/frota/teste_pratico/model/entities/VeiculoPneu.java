@@ -1,5 +1,7 @@
 package com.frota.teste_pratico.model.entities;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -19,6 +21,7 @@ public class VeiculoPneu {
 
     @ManyToOne
     @JoinColumn(name = "veiculo_id", nullable = false)
+    @JsonBackReference
     private Veiculo veiculo;
 
     @ManyToOne
