@@ -8,6 +8,7 @@ import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.entities.VeiculoPneu;
+import com.frota.teste_pratico.model.exceptions.VeiculoPneuException;
 import com.frota.teste_pratico.repository.PneuRepository;
 import com.frota.teste_pratico.repository.VeiculoPneuRepository;
 import com.frota.teste_pratico.repository.VeiculoRepository;
@@ -38,15 +39,19 @@ public class VeiculoPneuService {
     @Transactional
     public InserirPneuNoVeiculoValidandoPosicaoResponse insertPneuVeiculoComPosicao(InserirPneuVeiculoRequest request) {
 
-        Veiculo veiculo = veiculoRepository.findById(request.getVeiculoId()).orElseThrow(()->  new DataIntegrityViolationException("Veiculo não existe"));
-        Pneu pneu = pneuRepository.findById(request.getPneuId()).orElseThrow(() -> new DataIntegrityViolationException("Pneu não existe"));
+        Veiculo veiculo = veiculoRepository.findById(request.getVeiculoId()).orElseThrow(() -> new VeiculoPneuException("Veiculo não existe"));
+        Pneu pneu = pneuRepository.findById(request.getPneuId()).orElseThrow(() -> new VeiculoPneuException("Pneu não existe"));
 
         if (veiculo.getQuantidadeDePneus() < request.getPosicao()) {
-            throw new DataIntegrityViolationException("Posição Inválida");
+            throw new VeiculoPneuException("Posição Inválida");
         }
 
         if (veiculoPneuRepository.findByVeiculoIdAndPosicao(request.getVeiculoId(), request.getPosicao()).isPresent()) {
-            throw  new DataIntegrityViolationException("Ja existe um pneu nessa posição");
+            throw new VeiculoPneuException("Ja existe um pneu nessa posição");
+        }
+
+        if (veiculoPneuRepository.findByPneuId(request.getPneuId()).isPresent()) {
+            throw new VeiculoPneuException("Ja existe um veiculo com esse pneu");
         }
 
         VeiculoPneu veiculoPneu = new VeiculoPneu(veiculo, pneu, request.getPosicao());
@@ -61,9 +66,8 @@ public class VeiculoPneuService {
     @Transactional
     public void removePneuFromVeiculo(RemoverPneuDoVeiculoRequest request) {
 
-        //testar existsBy para retornar um boolean
         if(veiculoPneuRepository.findByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId()).isEmpty())
-            throw  new DataIntegrityViolationException("Esse veículo e pneu não estão vinculados");
+            throw  new VeiculoPneuException("Esse veículo e pneu não estão vinculados");
 
         veiculoPneuRepository.deleteByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId());
     }

@@ -31,10 +31,11 @@ public interface VeiculoMapper {
 
         BuscarVeiculoPorPlacaComPneusResponse buscarVeiculoPorPlacaComPneusResponse = new BuscarVeiculoPorPlacaComPneusResponse();
 
-        buscarVeiculoPorPlacaComPneusResponse.setPlaca( veiculo.getPlaca() );
-        buscarVeiculoPorPlacaComPneusResponse.setMarca( veiculo.getMarca() );
-        buscarVeiculoPorPlacaComPneusResponse.setQuilometragem( veiculo.getQuilometragem() );
-        buscarVeiculoPorPlacaComPneusResponse.setStatus( veiculo.getStatus() );
+        buscarVeiculoPorPlacaComPneusResponse.setPlaca(veiculo.getPlaca());
+        buscarVeiculoPorPlacaComPneusResponse.setMarca(veiculo.getMarca());
+        buscarVeiculoPorPlacaComPneusResponse.setQuilometragem(veiculo.getQuilometragem());
+        buscarVeiculoPorPlacaComPneusResponse.setStatus(veiculo.getStatus());
+        buscarVeiculoPorPlacaComPneusResponse.setQuantidadeDePneus(veiculo.getQuantidadeDePneus());
 
         buscarVeiculoPorPlacaComPneusResponse.setPneuList(veiculo.getPneus().stream().map(vp ->
         new BuscarVeiculoPneuResponseSemVeiculo(
