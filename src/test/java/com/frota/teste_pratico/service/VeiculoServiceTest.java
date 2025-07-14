@@ -3,13 +3,13 @@ package com.frota.teste_pratico.service;
 import com.frota.teste_pratico.dto.veiculo.*;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Veiculo;
+import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
 import com.frota.teste_pratico.repository.VeiculoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
 
-import java.util.List;
-import java.util.Optional;
+import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
@@ -108,5 +108,20 @@ class VeiculoServiceTest {
         });
 
         verify(veiculoRepository, never()).findByIdWithPneus(id);
+    }
+
+    @Test
+    void deveMostrarVeiculoComListaDePneusVaziaSeNaoTiverPneuCadastrado() {
+        Long id = 99L;
+        Veiculo veiculo = new Veiculo(99L, "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
+        BuscarVeiculoPorPlacaComPneusResponse teste = new BuscarVeiculoPorPlacaComPneusResponse("PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
+
+        when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
+        when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(teste);
+
+        BuscarVeiculoPorPlacaComPneusResponse response = veiculoService.getVeiculoById(id);
+
+        assertNotNull(response);
+        assertTrue(response.getPneuList().isEmpty());
     }
 }

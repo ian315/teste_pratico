@@ -35,8 +35,8 @@ public class VeiculoController {
     }
 
     //3. Endpoint para consultar um veículo específico (com pneus)
-    @GetMapping("findby")
-    public ResponseEntity<BuscarVeiculoPorPlacaComPneusResponse> getVeiculoPorPlaca(@RequestParam("id") Long id) {
+    @GetMapping("/findby/{id}")
+    public ResponseEntity<BuscarVeiculoPorPlacaComPneusResponse> getVeiculoPorPlaca(@Valid @PathVariable Long id) {
 
         return new ResponseEntity<>(service.getVeiculoById(id), HttpStatus.OK);
     }

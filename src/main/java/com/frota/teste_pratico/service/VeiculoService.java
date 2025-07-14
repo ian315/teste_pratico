@@ -6,12 +6,14 @@ import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
 import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Veiculo;
+import com.frota.teste_pratico.repository.PneuRepository;
 import com.frota.teste_pratico.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -23,6 +25,9 @@ public class VeiculoService {
 
     @Autowired
     private VeiculoRepository repo;
+
+    @Autowired
+    private PneuRepository pneuRepository;
 
     @Transactional
     public InserirVeiculoResponse cadastraVeiculo(InserirVeiculoRequest veiculoRequest) {
@@ -42,11 +47,9 @@ public class VeiculoService {
     }
 
     public BuscarVeiculoPorPlacaComPneusResponse getVeiculoById(Long id) {
-        if(repo.findById(id).isEmpty() ) {
-            throw  new DataIntegrityViolationException("o Veiculo de: " + id + " não existe");
-        }
+        Veiculo veiculo = repo.findById(id)
+                .orElseThrow(() -> new DataIntegrityViolationException("o Veiculo de: " + id + " não existe"));
 
-        Veiculo veiculo = repo.findByIdWithPneus(id);
         return veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo);
     }
 }

@@ -71,20 +71,6 @@ class VeiculoPneuServiceTest {
     }
 
     @Test
-    void deveLancarExcecaoSePosicaoNaoExisteNoBanco() {
-        InserirPneuVeiculoRequest request = new InserirPneuVeiculoRequest(1L, 2L, 2);
-        Veiculo veiculo = new Veiculo();
-        veiculo.setQuantidadeDePneus(4);
-        Pneu pneu = new Pneu();
-
-        when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
-        when(pneuRepository.findById(2L)).thenReturn(Optional.of(pneu));
-        when(veiculoPneuRepository.findByPosicao(2)).thenReturn(Optional.empty());
-
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
-    }
-
-    @Test
     void deveLancarExcecaoSeJaExistePneuNaPosicao() {
         InserirPneuVeiculoRequest request = new InserirPneuVeiculoRequest(1L, 2L, 2);
         Veiculo veiculo = new Veiculo();

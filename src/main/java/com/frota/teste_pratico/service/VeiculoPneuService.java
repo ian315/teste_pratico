@@ -45,10 +45,6 @@ public class VeiculoPneuService {
             throw new DataIntegrityViolationException("Posição Inválida");
         }
 
-        if (veiculoPneuRepository.findByPosicao(request.getPosicao()).isEmpty()) {
-            throw  new DataIntegrityViolationException("Posicao não existe");
-        }
-
         if (veiculoPneuRepository.findByVeiculoIdAndPosicao(request.getVeiculoId(), request.getPosicao()).isPresent()) {
             throw  new DataIntegrityViolationException("Ja existe um pneu nessa posição");
         }
