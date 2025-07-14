@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.dto.veiculo_pneu;
 
-import com.frota.teste_pratico.dto.pneu.FindPneuResponseSemVeiculo;
+import com.frota.teste_pratico.dto.pneu.BuscarPneuSemVeiculoResponse;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -10,7 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 public class FindVeiculoPneuResponseSemVeiculo {
 
-    private FindPneuResponseSemVeiculo pneu;
+    private BuscarPneuSemVeiculoResponse pneu;
     private int posicao;
 
 }
