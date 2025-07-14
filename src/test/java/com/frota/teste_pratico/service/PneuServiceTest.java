@@ -9,7 +9,6 @@ import com.frota.teste_pratico.repository.PneuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.*;
-import org.springframework.dao.DataIntegrityViolationException;
 
 import java.util.Optional;
 

@@ -17,7 +17,6 @@ public class VeiculoPneuController {
     @Autowired
     private VeiculoPneuService service;
 
-
     //5. Endpoint para vincular um pneu em um veículo
     @PostMapping("/inserir")
     public ResponseEntity<InserirPneuNoVeiculoValidandoPosicaoResponse> adicionarPneuAoVeiculo(

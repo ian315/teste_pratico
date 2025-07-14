@@ -5,7 +5,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 import java.util.Optional;
 
-
 public interface VeiculoPneuRepository extends JpaRepository<VeiculoPneu, Long> {
 
     Optional<VeiculoPneu> findByPosicao(int posicao);
