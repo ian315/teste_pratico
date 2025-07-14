@@ -4,6 +4,7 @@ import com.frota.teste_pratico.dto.veiculo.*;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
+import com.frota.teste_pratico.model.exceptions.VeiculoException;
 import com.frota.teste_pratico.repository.VeiculoRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -13,7 +14,6 @@ import java.util.*;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.Mockito.*;
-import org.springframework.dao.DataIntegrityViolationException;
 
 class VeiculoServiceTest {
 
@@ -57,7 +57,7 @@ class VeiculoServiceTest {
 
         when(veiculoRepository.findByPlaca("XYZ9876")).thenReturn(Optional.of(new Veiculo()));
 
-        assertThrows(DataIntegrityViolationException.class, () -> {
+        assertThrows(VeiculoException.class, () -> {
             veiculoService.cadastraVeiculo(request);
         });
 
@@ -103,7 +103,7 @@ class VeiculoServiceTest {
 
         when(veiculoRepository.findById(id)).thenReturn(Optional.empty());
 
-        assertThrows(DataIntegrityViolationException.class, () -> {
+        assertThrows(VeiculoException.class, () -> {
             veiculoService.getVeiculoById(id);
         });
 

@@ -8,6 +8,7 @@ import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.entities.VeiculoPneu;
+import com.frota.teste_pratico.model.exceptions.VeiculoPneuException;
 import com.frota.teste_pratico.repository.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -42,7 +43,7 @@ class VeiculoPneuServiceTest {
 
         when(veiculoRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
     }
 
     @Test
@@ -54,7 +55,7 @@ class VeiculoPneuServiceTest {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(pneuRepository.findById(2L)).thenReturn(Optional.empty());
 
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
     }
 
     @Test
@@ -67,7 +68,7 @@ class VeiculoPneuServiceTest {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(pneuRepository.findById(2L)).thenReturn(Optional.of(pneu));
 
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
     }
 
     @Test
@@ -82,7 +83,7 @@ class VeiculoPneuServiceTest {
         when(veiculoPneuRepository.findByPosicao(2)).thenReturn(Optional.of(new VeiculoPneu()));
         when(veiculoPneuRepository.findByVeiculoIdAndPosicao(1L, 2)).thenReturn(Optional.of(new VeiculoPneu()));
 
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
     }
 
     @Test
@@ -115,7 +116,7 @@ class VeiculoPneuServiceTest {
 
         when(veiculoPneuRepository.findByVeiculoIdAndPneuId(1L, 2L)).thenReturn(Optional.empty());
 
-        assertThrows(DataIntegrityViolationException.class, () -> veiculoPneuService.removePneuFromVeiculo(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.removePneuFromVeiculo(request));
     }
 
     @Test

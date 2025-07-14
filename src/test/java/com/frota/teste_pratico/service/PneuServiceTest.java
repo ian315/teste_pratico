@@ -4,6 +4,7 @@ import com.frota.teste_pratico.dto.pneu.InserirPneuRequest;
 import com.frota.teste_pratico.dto.pneu.InserirPneuResponse;
 import com.frota.teste_pratico.mapper.PneuMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
+import com.frota.teste_pratico.model.exceptions.PneuException;
 import com.frota.teste_pratico.repository.PneuRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -59,7 +60,7 @@ class PneuServiceTest {
 
         when(pneuRepository.findByNumeroFogo(456L)).thenReturn(Optional.of(new Pneu()));
 
-        DataIntegrityViolationException exception = assertThrows(DataIntegrityViolationException.class, () -> {
+        PneuException exception = assertThrows(PneuException.class, () -> {
             pneuService.inserirPneu(request);
         });
 
