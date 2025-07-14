@@ -67,6 +67,10 @@ public class VeiculoPneuService {
     @Transactional
     public void removePneuFromVeiculo(RemovePneuFromVeiculoRequest request) {
 
+        //testar existsBy para retornar um boolean
+        if(veiculoPneuRepository.findByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId()).isEmpty())
+            throw  new DataIntegrityViolationException("Esse veículo e pneu não estão vinculados");
+
         veiculoPneuRepository.deleteByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId());
     }
 }
