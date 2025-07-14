@@ -1,0 +1,17 @@
+package com.frota.teste_pratico.dto.veiculo_pneu;
+
+import com.frota.teste_pratico.dto.pneu.PneuResponse;
+import com.frota.teste_pratico.dto.veiculo.ResponseVeiculo;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
+public class InsertPneuNoVeiculoValidandoPosicaoResponse {
+
+    private ResponseVeiculo veiculo;
+    private PneuResponse pneu;
+    private int posicao;
+}

@@ -1,11 +1,9 @@
 package com.frota.teste_pratico.mapper;
 
 import com.frota.teste_pratico.dto.pneu.FindPneuResponseSemVeiculo;
-import com.frota.teste_pratico.dto.veiculo.FindAllVeiculosResponse;
-import com.frota.teste_pratico.dto.veiculo.FindVeiculoByPlacaWithPneusResponse;
-import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
-import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
+import com.frota.teste_pratico.dto.veiculo.*;
 import com.frota.teste_pratico.dto.veiculo_pneu.FindVeiculoPneuResponseSemVeiculo;
+import com.frota.teste_pratico.dto.veiculo_pneu.InsertPneuVeiculoRequest;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
@@ -26,6 +24,8 @@ public interface VeiculoMapper {
 
     @Mapping(target = "pneuList", ignore = true)
     FindVeiculoByPlacaWithPneusResponse toFindVeiculoByPlacaWithPneusResponseFromEntity(Veiculo veiculo);
+
+    ResponseVeiculo toResponseFromInsertPneuEmVeiculo (Veiculo veiculo);
 
     default
     FindVeiculoByPlacaWithPneusResponse toFindVeiculoWithPneusResponseFromEntity(Veiculo veiculo){

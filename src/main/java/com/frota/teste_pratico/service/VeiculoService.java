@@ -48,8 +48,6 @@ public class VeiculoService {
         }
 
         Veiculo veiculo = repo.findByPlacaWithPneus(placa);
-//        veiculo.getPneus().forEach(v -> v.setVeiculo(null));
         return veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo);
-//        return null;
     }
 }

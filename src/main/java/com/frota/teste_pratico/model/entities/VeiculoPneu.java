@@ -1,7 +1,6 @@
 package com.frota.teste_pratico.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 
 import lombok.AllArgsConstructor;
@@ -30,4 +29,10 @@ public class VeiculoPneu {
 
     @Column(name = "posicao_pneu", nullable = false)
     private int posicao;
+
+    public VeiculoPneu(Veiculo veiculo, Pneu pneu, int posicao) {
+        this.veiculo = veiculo;
+        this.pneu = pneu;
+        this.posicao = posicao;
+    }
 }

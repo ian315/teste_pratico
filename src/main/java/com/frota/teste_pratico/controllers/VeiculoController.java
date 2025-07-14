@@ -18,8 +18,6 @@ public class VeiculoController {
 
     @Autowired
     private VeiculoService service;
-    //toda endpoint tem seu proprio DTO
-    //todo endpoint tera seu pro prio dto de request e de response
 
     //3. Endpoint para inserir um veículo específico
     @PostMapping(path = "/inserir")
@@ -39,6 +37,5 @@ public class VeiculoController {
     public ResponseEntity<FindVeiculoByPlacaWithPneusResponse> GetVeiculoByPlaca(@RequestParam("placa") String placa) {
 
         return new ResponseEntity<>(service.getVeiculoByPlaca(placa), HttpStatus.OK);
-//        return null;
     }
 }

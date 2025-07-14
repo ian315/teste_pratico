@@ -1,6 +1,5 @@
 package com.frota.teste_pratico.dto.veiculo_pneu;
 
-import com.frota.teste_pratico.dto.pneu.FindPneuResponseSemVeiculo;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -8,9 +7,9 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class FindVeiculoPneuResponseSemVeiculo {
+public class InsertPneuVeiculoRequest {
 
-    private FindPneuResponseSemVeiculo pneu;
+    private Long veiculoId;
+    private Long pneuId;
     private int posicao;
-
 }
