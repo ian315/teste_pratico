@@ -12,5 +12,4 @@ public class BuscarVeiculoPneuResponseSemVeiculo {
 
     private BuscarPneuSemVeiculoResponse pneu;
     private int posicao;
-
 }

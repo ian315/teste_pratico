@@ -8,9 +8,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
 
-
 import java.util.ArrayList;
 import java.util.List;
+
 
 @Entity
 @Data
@@ -32,12 +32,10 @@ public class Veiculo {
     @Column(name = "quilometragem", nullable = false)
     private int quilometragem;
 
-    //CASO NAO HAJA A POSSIBILIDADE DE ADICIONAR OUTRO STATUS, SERIA MAIS VIÁVEL FAZER UM BOOLEANO
     @Enumerated(EnumType.STRING)
     @Column(name = "status",nullable = false)
     private VeiculoStatusEnum status;
 
-    //SERIA VIÁVEL FAZER UMA TABELA DE TIPO OU MODELO DO VEICULO PARA NAO DEPENDER QUE O USUÁRIO DEFINA A QUANTIDADE DE RODAS
     @Column(name = "quantidade_pneus", nullable = false)
     private int quantidadeDePneus;
 

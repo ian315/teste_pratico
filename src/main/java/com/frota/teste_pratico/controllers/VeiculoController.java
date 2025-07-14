@@ -31,6 +31,7 @@ public class VeiculoController {
     //2. Endpoint para consultar todos os veículos (uma listagem)
     @GetMapping("/findall")
     public ResponseEntity<List<BuscarTodosVeiculosResponse>> buscaTodosVeiculos() {
+
         return new ResponseEntity<>(service.buscaTodosVeiculos(), HttpStatus.OK);
     }
 
