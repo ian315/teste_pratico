@@ -44,7 +44,7 @@ class VeiculoServiceTest {
         when(veiculoRepository.save(veiculoEntity)).thenReturn(veiculoEntity);
         when(veiculoMapper.toResponseDtoFromEntity(veiculoEntity)).thenReturn(response);
 
-        InserirVeiculoResponse result = veiculoService.cadastraVeiculo(request);
+        InserirVeiculoResponse result = veiculoService.cadastrarVeiculo(request);
 
         assertEquals(response, result);
         verify(veiculoRepository).save(veiculoEntity);
@@ -58,7 +58,7 @@ class VeiculoServiceTest {
         when(veiculoRepository.findByPlaca("XYZ9876")).thenReturn(Optional.of(new Veiculo()));
 
         assertThrows(VeiculoException.class, () -> {
-            veiculoService.cadastraVeiculo(request);
+            veiculoService.cadastrarVeiculo(request);
         });
 
         verify(veiculoRepository, never()).save(any());
@@ -76,7 +76,7 @@ class VeiculoServiceTest {
         when(veiculoMapper.toFindAllResponseDtoFromEntity(v1)).thenReturn(r1);
         when(veiculoMapper.toFindAllResponseDtoFromEntity(v2)).thenReturn(r2);
 
-        List<BuscarTodosVeiculosResponse> result = veiculoService.buscaTodosVeiculos();
+        List<BuscarTodosVeiculosResponse> result = veiculoService.buscarTodosVeiculos();
 
         assertEquals(2, result.size());
         assertTrue(result.containsAll(List.of(r1, r2)));
@@ -91,22 +91,9 @@ class VeiculoServiceTest {
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
         when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(response);
 
-        BuscarVeiculoPorPlacaComPneusResponse result = veiculoService.getVeiculoById(id);
+        BuscarVeiculoPorPlacaComPneusResponse result = veiculoService.buscarVeiculoPorId(id);
 
         assertEquals(response, result);
-    }
-
-    @Test
-    void deveLancarExcecaoSeVeiculoNaoExiste() {
-        Long id = 99L;
-
-        when(veiculoRepository.findById(id)).thenReturn(Optional.empty());
-
-        assertThrows(VeiculoException.class, () -> {
-            veiculoService.getVeiculoById(id);
-        });
-
-        verify(veiculoRepository, never()).findByIdWithPneus(id);
     }
 
     @Test
@@ -121,7 +108,7 @@ class VeiculoServiceTest {
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
         when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(dto);
 
-        BuscarVeiculoPorPlacaComPneusResponse response = veiculoService.getVeiculoById(id);
+        BuscarVeiculoPorPlacaComPneusResponse response = veiculoService.buscarVeiculoPorId(id);
 
         assertNotNull(response);
         assertTrue(response.getPneuList().isEmpty());

@@ -21,7 +21,7 @@ public class VeiculoPneuController {
     @PostMapping("/inserir")
     public ResponseEntity<InserirPneuNoVeiculoValidandoPosicaoResponse> adicionarPneuAoVeiculo(
             @Valid @RequestBody InserirPneuVeiculoRequest request) {
-        return new ResponseEntity<>(service.insertPneuVeiculoComPosicao(request), HttpStatus.OK);
+        return new ResponseEntity<>(service.inserirPneuEmVeiculoComPosicao(request), HttpStatus.OK);
     }
 
     //6. Endpoint para desvincular um pneu em um veículo
@@ -29,7 +29,7 @@ public class VeiculoPneuController {
     public ResponseEntity<Void> removerPneuVeiculo(
             @Valid @RequestBody RemoverPneuDoVeiculoRequest request) {
 
-        service.removePneuFromVeiculo(request);
+        service.removerPneuDoVeiculo(request);
         return ResponseEntity.ok().build();
     }
 }

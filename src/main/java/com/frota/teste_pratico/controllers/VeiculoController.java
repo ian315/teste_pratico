@@ -25,20 +25,20 @@ public class VeiculoController {
     public ResponseEntity<InserirVeiculoResponse> cadastraVeiculo(
             @Valid @RequestBody InserirVeiculoRequest veiculoRequest) {
 
-        return new ResponseEntity<>(service.cadastraVeiculo(veiculoRequest), HttpStatus.OK);
+        return new ResponseEntity<>(service.cadastrarVeiculo(veiculoRequest), HttpStatus.OK);
     }
 
     //2. Endpoint para consultar todos os veículos (uma listagem)
     @GetMapping("/findall")
     public ResponseEntity<List<BuscarTodosVeiculosResponse>> buscaTodosVeiculos() {
 
-        return new ResponseEntity<>(service.buscaTodosVeiculos(), HttpStatus.OK);
+        return new ResponseEntity<>(service.buscarTodosVeiculos(), HttpStatus.OK);
     }
 
     //3. Endpoint para consultar um veículo específico (com pneus)
     @GetMapping("/findby/{id}")
-    public ResponseEntity<BuscarVeiculoPorPlacaComPneusResponse> getVeiculoPorPlaca(@Valid @PathVariable Long id) {
+    public ResponseEntity<BuscarVeiculoPorPlacaComPneusResponse> buscaVeiculoPorPlaca(@Valid @PathVariable Long id) {
 
-        return new ResponseEntity<>(service.getVeiculoById(id), HttpStatus.OK);
+        return new ResponseEntity<>(service.buscarVeiculoPorId(id), HttpStatus.OK);
     }
 }

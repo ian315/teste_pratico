@@ -42,7 +42,7 @@ class VeiculoPneuServiceTest {
 
         when(veiculoRepository.findById(1L)).thenReturn(Optional.empty());
 
-        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.inserirPneuEmVeiculoComPosicao(request));
     }
 
     @Test
@@ -54,7 +54,7 @@ class VeiculoPneuServiceTest {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(pneuRepository.findById(2L)).thenReturn(Optional.empty());
 
-        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.inserirPneuEmVeiculoComPosicao(request));
     }
 
     @Test
@@ -67,7 +67,7 @@ class VeiculoPneuServiceTest {
         when(veiculoRepository.findById(1L)).thenReturn(Optional.of(veiculo));
         when(pneuRepository.findById(2L)).thenReturn(Optional.of(pneu));
 
-        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.inserirPneuEmVeiculoComPosicao(request));
     }
 
     @Test
@@ -82,11 +82,11 @@ class VeiculoPneuServiceTest {
         when(veiculoPneuRepository.findByPosicao(2)).thenReturn(Optional.of(new VeiculoPneu()));
         when(veiculoPneuRepository.findByVeiculoIdAndPosicao(1L, 2)).thenReturn(Optional.of(new VeiculoPneu()));
 
-        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.insertPneuVeiculoComPosicao(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.inserirPneuEmVeiculoComPosicao(request));
     }
 
     @Test
-    void deveInserirPneuNoVeiculoComSucesso() {
+    void deveCadastraPneuNoVeiculoComSucesso() {
         InserirPneuVeiculoRequest request = new InserirPneuVeiculoRequest(1L, 2L, 2);
         Veiculo veiculo = new Veiculo();
         veiculo.setQuantidadeDePneus(4);
@@ -100,7 +100,7 @@ class VeiculoPneuServiceTest {
         when(veiculoMapper.toResponseFromInsertPneuEmVeiculo(veiculo)).thenReturn(mock(ResponseVeiculo.class)); // ou mock do response
         when(pneuMapper.toInsertResponsePneuOnVeiculoFromEntity(pneu)).thenReturn(mock(PneuResponse.class));
 
-        InserirPneuNoVeiculoValidandoPosicaoResponse response = veiculoPneuService.insertPneuVeiculoComPosicao(request);
+        InserirPneuNoVeiculoValidandoPosicaoResponse response = veiculoPneuService.inserirPneuEmVeiculoComPosicao(request);
 
         assertEquals(2, response.getPosicao());
         assertNotNull(response.getPneu());
@@ -115,7 +115,7 @@ class VeiculoPneuServiceTest {
 
         when(veiculoPneuRepository.findByVeiculoIdAndPneuId(1L, 2L)).thenReturn(Optional.empty());
 
-        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.removePneuFromVeiculo(request));
+        assertThrows(VeiculoPneuException.class, () -> veiculoPneuService.removerPneuDoVeiculo(request));
     }
 
     @Test
@@ -124,7 +124,7 @@ class VeiculoPneuServiceTest {
 
         when(veiculoPneuRepository.findByVeiculoIdAndPneuId(1L, 2L)).thenReturn(Optional.of(new VeiculoPneu()));
 
-        assertDoesNotThrow(() -> veiculoPneuService.removePneuFromVeiculo(request));
+        assertDoesNotThrow(() -> veiculoPneuService.removerPneuDoVeiculo(request));
 
         verify(veiculoPneuRepository).deleteByVeiculoIdAndPneuId(1L, 2L);
     }

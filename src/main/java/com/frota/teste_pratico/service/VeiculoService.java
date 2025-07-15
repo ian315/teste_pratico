@@ -29,7 +29,7 @@ public class VeiculoService {
     private PneuRepository pneuRepository;
 
     @Transactional
-    public InserirVeiculoResponse cadastraVeiculo(InserirVeiculoRequest veiculoRequest) {
+    public InserirVeiculoResponse cadastrarVeiculo(InserirVeiculoRequest veiculoRequest) {
         if(repo.findByPlaca(veiculoRequest.getPlaca()).isPresent() ) {
             throw new VeiculoException("Placa: " + veiculoRequest.getPlaca() + " já existente");
         }
@@ -38,14 +38,14 @@ public class VeiculoService {
         return veiculoMapper.toResponseDtoFromEntity(veiculo);
     }
 
-    public List<BuscarTodosVeiculosResponse> buscaTodosVeiculos() {
+    public List<BuscarTodosVeiculosResponse> buscarTodosVeiculos() {
 
         return repo.findAll().stream()
                 .map(veiculoMapper::toFindAllResponseDtoFromEntity)
                 .collect(Collectors.toList());
     }
 
-    public BuscarVeiculoPorPlacaComPneusResponse getVeiculoById(Long id) {
+    public BuscarVeiculoPorPlacaComPneusResponse buscarVeiculoPorId(Long id) {
         Veiculo veiculo = repo.findById(id)
                 .orElseThrow(() -> new VeiculoException("o Veiculo de ID: " + id + " não existe"));
 

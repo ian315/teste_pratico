@@ -20,7 +20,7 @@ public class PneuService {
     private PneuRepository repo;
 
     @Transactional
-    public InserirPneuResponse inserirPneu(InserirPneuRequest request) {
+    public InserirPneuResponse cadastraPneu(InserirPneuRequest request) {
         if (repo.findByNumeroFogo(request.getNumeroFogo()).isPresent()) {
             throw new PneuException("Numero de fogo: " + request.getNumeroFogo() + " já existe");
         }

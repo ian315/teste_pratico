@@ -32,7 +32,7 @@ class PneuServiceTest {
     }
 
     @Test
-    void deveInserirPneuComSucesso() {
+    void deveCadastraPneuComSucesso() {
         InserirPneuRequest request = new InserirPneuRequest();
         request.setNumeroFogo(123L);
 
@@ -44,7 +44,7 @@ class PneuServiceTest {
         when(pneuRepository.save(pneuEntity)).thenReturn(pneuEntity);
         when(pneuMapper.toResponseDtoFromEntity(pneuEntity)).thenReturn(expectedResponse);
 
-        InserirPneuResponse response = pneuService.inserirPneu(request);
+        InserirPneuResponse response = pneuService.cadastraPneu(request);
 
         assertEquals(expectedResponse, response);
         verify(pneuRepository).save(pneuEntity);
@@ -58,7 +58,7 @@ class PneuServiceTest {
         when(pneuRepository.findByNumeroFogo(456L)).thenReturn(Optional.of(new Pneu()));
 
         PneuException exception = assertThrows(PneuException.class, () -> {
-            pneuService.inserirPneu(request);
+            pneuService.cadastraPneu(request);
         });
 
         assertTrue(exception.getMessage().contains("456"));

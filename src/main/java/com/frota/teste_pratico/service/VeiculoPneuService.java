@@ -35,7 +35,7 @@ public class VeiculoPneuService {
     private PneuRepository pneuRepository;
 
     @Transactional
-    public InserirPneuNoVeiculoValidandoPosicaoResponse insertPneuVeiculoComPosicao(InserirPneuVeiculoRequest request) {
+    public InserirPneuNoVeiculoValidandoPosicaoResponse inserirPneuEmVeiculoComPosicao(InserirPneuVeiculoRequest request) {
 
         Veiculo veiculo = veiculoRepository.findById(request.getVeiculoId()).orElseThrow(() -> new VeiculoPneuException("Veiculo não existe"));
         Pneu pneu = pneuRepository.findById(request.getPneuId()).orElseThrow(() -> new VeiculoPneuException("Pneu não existe"));
@@ -62,7 +62,7 @@ public class VeiculoPneuService {
     }
 
     @Transactional
-    public void removePneuFromVeiculo(RemoverPneuDoVeiculoRequest request) {
+    public void removerPneuDoVeiculo(RemoverPneuDoVeiculoRequest request) {
 
         if(veiculoPneuRepository.findByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId()).isEmpty())
             throw  new VeiculoPneuException("Esse veículo e pneu não estão vinculados");

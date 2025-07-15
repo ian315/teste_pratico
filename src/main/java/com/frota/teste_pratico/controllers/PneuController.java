@@ -21,9 +21,9 @@ public class PneuController {
 
     //4. Endpoint para inserir um pneu específico
     @PostMapping(path = "/inserir")
-    public ResponseEntity<InserirPneuResponse> inserirPneu(
+    public ResponseEntity<InserirPneuResponse> cadastrarPneu(
             @Valid @RequestBody InserirPneuRequest inserirPneuRequest) {
 
-        return new ResponseEntity<>(service.inserirPneu(inserirPneuRequest), HttpStatus.OK);
+        return new ResponseEntity<>(service.cadastraPneu(inserirPneuRequest), HttpStatus.OK);
     }
 }
