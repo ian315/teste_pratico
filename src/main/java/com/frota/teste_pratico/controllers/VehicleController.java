@@ -4,7 +4,7 @@ import com.frota.teste_pratico.dto.veiculo.InsertVehicleResponse;
 import com.frota.teste_pratico.dto.veiculo.SearchAllVehiclesResponse;
 import com.frota.teste_pratico.dto.veiculo.SearchVehicleByPlateWithTiresResponse;
 import com.frota.teste_pratico.dto.veiculo.InsertVehicleRequest;
-import com.frota.teste_pratico.service.VeiculoService;
+import com.frota.teste_pratico.service.VehicleService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,10 +15,10 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/fleet/vehicle")
-public class VeiculoController {
+public class VehicleController {
 
     @Autowired
-    private VeiculoService service;
+    private VehicleService service;
 
     //1. Endpoint para inserir um veículo específico
     @PostMapping(path = "/insert")

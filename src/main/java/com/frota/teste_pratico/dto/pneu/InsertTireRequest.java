@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.dto.pneu;
 
-import com.frota.teste_pratico.model.enums.PneuStatusEnum;
+import com.frota.teste_pratico.model.enums.TireStatusEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -21,5 +21,5 @@ public class InsertTireRequest {
     private Float pressure;
 
     @NotNull(message = "Status não pode ser nulo.")
-    private PneuStatusEnum status;
+    private TireStatusEnum status;
 }

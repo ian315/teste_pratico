@@ -1,6 +1,0 @@
-package com.frota.teste_pratico.model.enums;
-
-public enum TipoMarcaEnum {
-    VEICULO,
-    PNEU;
-}

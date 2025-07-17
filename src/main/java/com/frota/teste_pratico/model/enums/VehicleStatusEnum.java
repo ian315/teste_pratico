@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.model.enums;
 
-public enum VeiculoStatusEnum {
+public enum VehicleStatusEnum {
     ATIVO,
     INATIVO;
 }

@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.dto.veiculo;
 
-import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
+import com.frota.teste_pratico.model.enums.VehicleStatusEnum;
 import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,7 +22,7 @@ public class InsertVehicleRequest {
     private int mileage;
 
     @NotNull(message = "Status não pode ser nulo.")
-    private VeiculoStatusEnum status;
+    private VehicleStatusEnum status;
 
     @NotNull(message = "quantidade de pneus não pode ser nulo.")
     private int tireQuantity;

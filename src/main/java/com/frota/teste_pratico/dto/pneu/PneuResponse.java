@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.dto.pneu;
 
-import com.frota.teste_pratico.model.enums.PneuStatusEnum;
+import com.frota.teste_pratico.model.enums.TireStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -14,5 +14,5 @@ public class PneuResponse {
     private String fireNumber;
     private String brand;
     private Float pressure;
-    private PneuStatusEnum status;
+    private TireStatusEnum status;
 }

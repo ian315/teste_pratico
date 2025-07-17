@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirPneuVeiculoRequest {
+public class InsertTireOnVehicleRequest {
 
     @NotNull(message = "VeiculoId do pneu não pode ser nulo.")
     private Long veiculoId;
@@ -17,5 +17,5 @@ public class InserirPneuVeiculoRequest {
     private Long pneuId;
 
     @NotNull(message = "posição não pode ser nulo.")
-    private int posicao;
+    private int position;
 }

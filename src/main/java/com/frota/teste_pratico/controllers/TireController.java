@@ -2,7 +2,7 @@ package com.frota.teste_pratico.controllers;
 
 import com.frota.teste_pratico.dto.pneu.InsertTireRequest;
 import com.frota.teste_pratico.dto.pneu.InsertTireResponse;
-import com.frota.teste_pratico.service.PneuService;
+import com.frota.teste_pratico.service.TireService;
 import jakarta.validation.Valid;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -14,10 +14,10 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/fleet/tire")
-public class PneuController {
+public class TireController {
 
     @Autowired
-    private PneuService service;
+    private TireService service;
 
     //4. Endpoint para inserir um pneu específico
     @PostMapping(path = "/insert")

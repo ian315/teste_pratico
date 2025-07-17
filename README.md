@@ -10,17 +10,17 @@
 3. **Endpoint para inserir um veículo específico**
 - Este endpoint deve inserir todas as informações de um veículo específico.
 
-4. **Endpoint para inserir um pneu específico**
-- Este endpoint deve inserir todas as informações de um pneu específico.
-5. **Endpoint para vincular um pneu em um veículo**
+4. **Endpoint para inserir um tire específico**
+- Este endpoint deve inserir todas as informações de um tire específico.
+5. **Endpoint para vincular um tire em um veículo**
 
-- Este endpoint deve vincular um pneu com um veículo.
+- Este endpoint deve vincular um tire com um veículo.
 
 - Lembre-se: um veículo não pode ter dois pneus na mesma posição.
 
-6. **Endpoint para desvincular um pneu em um veículo**
+6. **Endpoint para desvincular um tire em um veículo**
     
-- Este endpoint deve desvincular um pneu com um veículo.
+- Este endpoint deve desvincular um tire com um veículo.
 
 # Tecnologias:
 - Java 21
@@ -86,39 +86,39 @@ http://localhost:8080/swagger-ui/index.html
 
 #### Adiciona um Pneus
 
-```http localhost:8080/frota/pneu/
+```http localhost:8080/frota/tire/
   POST /inserir
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
-| `numeroFogo` | `Long` | **Obrigatório**. Número de fogo do pneu|
-| `marca` | `String` | **Obrigatório**. Marca do pneu|
-| `pressao` | `Float` | **Obrigatório**. Pressão do pneu|
-| `status` | `PneuStatusEnum` | **Obrigatório**. Status do pneu|
+| `numeroFogo` | `Long` | **Obrigatório**. Número de fogo do tire|
+| `marca` | `String` | **Obrigatório**. Marca do tire|
+| `pressao` | `Float` | **Obrigatório**. Pressão do tire|
+| `status` | `PneuStatusEnum` | **Obrigatório**. Status do tire|
 
 #### Adiciona um Pneu a um veículo
 
-```http localhost:8080/frota/veiculo-pneu/
+```http localhost:8080/frota/vehicle-tire/
   POST /inserir
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `veiculoId` | `Long` | **Obrigatório**. ID do veículo|
-| `pneuId` | `Long` | **Obrigatório**. ID do pneu|
-| `posicao` | `int` | **Obrigatório**. posição do pneu|
+| `pneuId` | `Long` | **Obrigatório**. ID do tire|
+| `posicao` | `int` | **Obrigatório**. posição do tire|
 
-#### Remove um pneu de um veículo
+#### Remove um tire de um veículo
 
-```http localhost:8080/frota/veiculo-pneu/
-  DELETE /remover-pneu
+```http localhost:8080/frota/vehicle-tire/
+  DELETE /remover-tire
 ```
 
 | Parâmetro   | Tipo       | Descrição                           |
 | :---------- | :--------- | :---------------------------------- |
 | `veiculoId` | `Long` | **Obrigatório**. ID do veículo|
-| `pneuId` | `Long` | **Obrigatório**. ID do pneu|
+| `pneuId` | `Long` | **Obrigatório**. ID do tire|
 
 
 

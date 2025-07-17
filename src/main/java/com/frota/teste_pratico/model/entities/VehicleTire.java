@@ -11,7 +11,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class VeiculoPneu {
+public class VehicleTire {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -20,18 +20,18 @@ public class VeiculoPneu {
     @ManyToOne
     @JoinColumn(name = "veiculo_id", nullable = false)
     @JsonBackReference
-    private Veiculo veiculo;
+    private Vehicle vehicle;
 
     @ManyToOne
     @JoinColumn(name = "pneu_id", nullable = false)
-    private Pneu pneu;
+    private Tire tire;
 
     @Column(name = "posicao_pneu", nullable = false)
     private int posicao;
 
-    public VeiculoPneu(Veiculo veiculo, Pneu pneu, int posicao) {
-        this.veiculo = veiculo;
-        this.pneu = pneu;
+    public VehicleTire(Vehicle vehicle, Tire tire, int posicao) {
+        this.vehicle = vehicle;
+        this.tire = tire;
         this.posicao = posicao;
     }
 }

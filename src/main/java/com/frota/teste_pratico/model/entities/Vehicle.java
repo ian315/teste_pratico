@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.model.entities;
 
 import com.fasterxml.jackson.annotation.JsonManagedReference;
-import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
+import com.frota.teste_pratico.model.enums.VehicleStatusEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -16,30 +16,30 @@ import java.util.List;
 @NoArgsConstructor
 @AllArgsConstructor
 @Table(name = "veiculo")
-public class Veiculo {
+public class Vehicle {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "placa", nullable = false)
-    private String placa;
+    private String plate;
 
     @Column(name = "marca")
-    private String marca;
+    private String brand;
 
     @Column(name = "quilometragem", nullable = false)
-    private int quilometragem;
+    private int mileage;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status",nullable = false)
-    private VeiculoStatusEnum status;
+    private VehicleStatusEnum status;
 
     @Column(name = "quantidade_pneus", nullable = false)
-    private int quantidadeDePneus;
+    private int tireQuantity;
 
     @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     @ToString.Exclude
-    private List<VeiculoPneu> pneus = new ArrayList<>();
+    private List<VehicleTire> tires = new ArrayList<>();
 }

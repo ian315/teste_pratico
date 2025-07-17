@@ -22,18 +22,18 @@ public class GlobalExceptionHandler {
     }
 
     // Exceções específicas
-    @ExceptionHandler(VeiculoPneuException.class)
-    public ResponseEntity<Map<String, String>> handlePneuVeiculoException(VeiculoPneuException exception) {
+    @ExceptionHandler(VehicleTireException.class)
+    public ResponseEntity<Map<String, String>> handlePneuVeiculoException(VehicleTireException exception) {
         return buildErrorResponse(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 
-    @ExceptionHandler(VeiculoException.class)
-    public ResponseEntity<Map<String, String>> handleVeiculoException(VeiculoException exception) {
+    @ExceptionHandler(VehicleException.class)
+    public ResponseEntity<Map<String, String>> handleVeiculoException(VehicleException exception) {
         return buildErrorResponse(exception.getMessage(), HttpStatus.NOT_FOUND);
     }
 
-    @ExceptionHandler(PneuException.class)
-    public ResponseEntity<Map<String, String>> handlePneuException(PneuException exception) {
+    @ExceptionHandler(TireException.class)
+    public ResponseEntity<Map<String, String>> handlePneuException(TireException exception) {
         return buildErrorResponse(exception.getMessage(), HttpStatus.BAD_REQUEST);
     }
 

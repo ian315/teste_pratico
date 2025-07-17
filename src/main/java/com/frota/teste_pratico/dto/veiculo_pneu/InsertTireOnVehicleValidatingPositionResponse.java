@@ -9,7 +9,7 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirPneuNoVeiculoValidandoPosicaoResponse {
+public class InsertTireOnVehicleValidatingPositionResponse {
 
     private ResponseVehicle veiculo;
     private PneuResponse pneu;

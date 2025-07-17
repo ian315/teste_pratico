@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.dto.veiculo;
 
-import com.frota.teste_pratico.dto.veiculo_pneu.BuscarVeiculoPneuResponseSemVeiculo;
-import com.frota.teste_pratico.model.enums.VeiculoStatusEnum;
+import com.frota.teste_pratico.dto.veiculo_pneu.SearchVehicleTireWithoutVehicleResponse;
+import com.frota.teste_pratico.model.enums.VehicleStatusEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -16,7 +16,7 @@ public class SearchVehicleByPlateWithTiresResponse {
     private String plate;
     private String brand;
     private int mileage;
-    private VeiculoStatusEnum status;
+    private VehicleStatusEnum status;
     private int tireQuantity;
-    private List<BuscarVeiculoPneuResponseSemVeiculo> tireList;
+    private List<SearchVehicleTireWithoutVehicleResponse> tireList;
 }
