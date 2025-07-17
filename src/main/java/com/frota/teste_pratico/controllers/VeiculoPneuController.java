@@ -11,21 +11,21 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping("/frota/veiculo-pneu")
+@RequestMapping("/fleet/vehicle-tire")
 public class VeiculoPneuController {
 
     @Autowired
     private VeiculoPneuService service;
 
     //5. Endpoint para vincular um pneu em um veículo
-    @PostMapping("/inserir")
+    @PostMapping("/insert")
     public ResponseEntity<InserirPneuNoVeiculoValidandoPosicaoResponse> adicionarPneuAoVeiculo(
             @Valid @RequestBody InserirPneuVeiculoRequest request) {
         return new ResponseEntity<>(service.inserirPneuEmVeiculoComPosicao(request), HttpStatus.OK);
     }
 
     //6. Endpoint para desvincular um pneu em um veículo
-    @DeleteMapping("/remover-pneu")
+    @DeleteMapping("/remove-tire")
     public ResponseEntity<Void> removerPneuVeiculo(
             @Valid @RequestBody RemoverPneuDoVeiculoRequest request) {
 

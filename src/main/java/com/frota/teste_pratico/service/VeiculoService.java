@@ -7,7 +7,6 @@ import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.exceptions.VeiculoException;
-import com.frota.teste_pratico.repository.PneuRepository;
 import com.frota.teste_pratico.repository.VeiculoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -24,9 +23,6 @@ public class VeiculoService {
 
     @Autowired
     private VeiculoRepository repo;
-
-    @Autowired
-    private PneuRepository pneuRepository;
 
     @Transactional
     public InserirVeiculoResponse cadastrarVeiculo(InserirVeiculoRequest veiculoRequest) {

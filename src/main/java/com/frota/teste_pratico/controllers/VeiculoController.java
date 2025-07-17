@@ -14,14 +14,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/frota/veiculos")
+@RequestMapping("/fleet/vehicle")
 public class VeiculoController {
 
     @Autowired
     private VeiculoService service;
 
     //1. Endpoint para inserir um veículo específico
-    @PostMapping(path = "/inserir")
+    @PostMapping(path = "/insert")
     public ResponseEntity<InserirVeiculoResponse> cadastraVeiculo(
             @Valid @RequestBody InserirVeiculoRequest veiculoRequest) {
 
@@ -29,7 +29,7 @@ public class VeiculoController {
     }
 
     //2. Endpoint para consultar todos os veículos (uma listagem)
-    @GetMapping("/findall")
+    @GetMapping("/findAll")
     public ResponseEntity<List<BuscarTodosVeiculosResponse>> buscaTodosVeiculos() {
 
         return new ResponseEntity<>(service.buscarTodosVeiculos(), HttpStatus.OK);
