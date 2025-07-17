@@ -1,6 +1,6 @@
 package com.frota.teste_pratico.mapper;
 
-import com.frota.teste_pratico.dto.pneu.BuscarPneuSemVeiculoResponse;
+import com.frota.teste_pratico.dto.pneu.SearchTireWithNoVehicleResponse;
 import com.frota.teste_pratico.dto.veiculo.*;
 import com.frota.teste_pratico.dto.veiculo_pneu.BuscarVeiculoPneuResponseSemVeiculo;
 import com.frota.teste_pratico.model.entities.Veiculo;
@@ -11,41 +11,41 @@ import org.mapstruct.ReportingPolicy;
 @Mapper(componentModel = "spring", unmappedTargetPolicy = ReportingPolicy.IGNORE)
 public interface VeiculoMapper {
 
-    Veiculo toEntityFromInsertRequest(InserirVeiculoRequest inserirVeiculoRequest);
+    Veiculo toEntityFromInsertRequest(InsertVehicleRequest insertVehicleRequest);
 
-    InserirVeiculoRequest toRequestDtoFromEntity(Veiculo veiculo);
+    InsertVehicleRequest toRequestDtoFromEntity(Veiculo veiculo);
 
-    InserirVeiculoResponse toResponseDtoFromEntity(Veiculo veiculo);
+    InsertVehicleResponse toResponseDtoFromEntity(Veiculo veiculo);
 
-    BuscarTodosVeiculosResponse toFindAllResponseDtoFromEntity(Veiculo veiculo);
+    SearchAllVehiclesResponse toFindAllResponseDtoFromEntity(Veiculo veiculo);
 
     @Mapping(target = "pneuList", ignore = true)
-    BuscarVeiculoPorPlacaComPneusResponse toFindVeiculoByPlacaWithPneusResponseFromEntity(Veiculo veiculo);
+    SearchVehicleByPlateWithTiresResponse toFindVeiculoByPlacaWithPneusResponseFromEntity(Veiculo veiculo);
 
-    ResponseVeiculo toResponseFromInsertPneuEmVeiculo (Veiculo veiculo);
+    ResponseVehicle toResponseFromInsertPneuEmVeiculo (Veiculo veiculo);
 
-    default BuscarVeiculoPorPlacaComPneusResponse toFindVeiculoWithPneusResponseFromEntity(Veiculo veiculo){
+    default SearchVehicleByPlateWithTiresResponse toFindVeiculoWithPneusResponseFromEntity(Veiculo veiculo){
         if ( veiculo == null ) {
             return null;
         }
 
-        BuscarVeiculoPorPlacaComPneusResponse buscarVeiculoPorPlacaComPneusResponse = new BuscarVeiculoPorPlacaComPneusResponse();
+        SearchVehicleByPlateWithTiresResponse searchVehicleByPlateWithTiresResponse = new SearchVehicleByPlateWithTiresResponse();
 
-        buscarVeiculoPorPlacaComPneusResponse.setPlaca(veiculo.getPlaca());
-        buscarVeiculoPorPlacaComPneusResponse.setMarca(veiculo.getMarca());
-        buscarVeiculoPorPlacaComPneusResponse.setQuilometragem(veiculo.getQuilometragem());
-        buscarVeiculoPorPlacaComPneusResponse.setStatus(veiculo.getStatus());
-        buscarVeiculoPorPlacaComPneusResponse.setQuantidadeDePneus(veiculo.getQuantidadeDePneus());
+        searchVehicleByPlateWithTiresResponse.setPlate(veiculo.getPlaca());
+        searchVehicleByPlateWithTiresResponse.setBrand(veiculo.getMarca());
+        searchVehicleByPlateWithTiresResponse.setMileage(veiculo.getQuilometragem());
+        searchVehicleByPlateWithTiresResponse.setStatus(veiculo.getStatus());
+        searchVehicleByPlateWithTiresResponse.setTireQuantity(veiculo.getQuantidadeDePneus());
 
-        buscarVeiculoPorPlacaComPneusResponse.setPneuList(veiculo.getPneus().stream().map(vp ->
+        searchVehicleByPlateWithTiresResponse.setTireList(veiculo.getPneus().stream().map(vp ->
         new BuscarVeiculoPneuResponseSemVeiculo(
-                        new BuscarPneuSemVeiculoResponse(
+                        new SearchTireWithNoVehicleResponse(
                 vp.getPneu().getNumeroFogo(),
                                 vp.getPneu().getMarca(),
                                 vp.getPneu().getPressao(),
                                 vp.getPneu().getStatus()),
         vp.getPosicao())).toList());
 
-        return buscarVeiculoPorPlacaComPneusResponse;
+        return searchVehicleByPlateWithTiresResponse;
     }
 }

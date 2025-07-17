@@ -9,16 +9,16 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirPneuRequest {
+public class InsertTireRequest {
 
     @NotNull(message = "Número de fogo não pode ser nulo.")
-    private Long numeroFogo;
+    private Long fireNumber;
 
     @NotNull(message = "Marca não pode ser nulo.")
-    private String marca;
+    private String brand;
 
     @NotNull(message = "Pressão não pode ser nulo.")
-    private Float pressao;
+    private Float pressure;
 
     @NotNull(message = "Status não pode ser nulo.")
     private PneuStatusEnum status;

@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.service;
 
-import com.frota.teste_pratico.dto.pneu.InserirPneuRequest;
-import com.frota.teste_pratico.dto.pneu.InserirPneuResponse;
+import com.frota.teste_pratico.dto.pneu.InsertTireRequest;
+import com.frota.teste_pratico.dto.pneu.InsertTireResponse;
 import com.frota.teste_pratico.mapper.PneuMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
 import com.frota.teste_pratico.model.exceptions.PneuException;
@@ -33,18 +33,18 @@ class PneuServiceTest {
 
     @Test
     void deveCadastraPneuComSucesso() {
-        InserirPneuRequest request = new InserirPneuRequest();
-        request.setNumeroFogo(123L);
+        InsertTireRequest request = new InsertTireRequest();
+        request.setFireNumber(123L);
 
         Pneu pneuEntity = new Pneu();
-        InserirPneuResponse expectedResponse = new InserirPneuResponse();
+        InsertTireResponse expectedResponse = new InsertTireResponse();
 
         when(pneuRepository.findByNumeroFogo(123L)).thenReturn(Optional.empty());
         when(pneuMapper.toEntityFromInsertRequest(request)).thenReturn(pneuEntity);
         when(pneuRepository.save(pneuEntity)).thenReturn(pneuEntity);
         when(pneuMapper.toResponseDtoFromEntity(pneuEntity)).thenReturn(expectedResponse);
 
-        InserirPneuResponse response = pneuService.cadastraPneu(request);
+        InsertTireResponse response = pneuService.cadastraPneu(request);
 
         assertEquals(expectedResponse, response);
         verify(pneuRepository).save(pneuEntity);
@@ -52,8 +52,8 @@ class PneuServiceTest {
 
     @Test
     void deveLancarExcecaoQuandoNumeroFogoJaExiste() {
-        InserirPneuRequest request = new InserirPneuRequest();
-        request.setNumeroFogo(456L);
+        InsertTireRequest request = new InsertTireRequest();
+        request.setFireNumber(456L);
 
         when(pneuRepository.findByNumeroFogo(456L)).thenReturn(Optional.of(new Pneu()));
 

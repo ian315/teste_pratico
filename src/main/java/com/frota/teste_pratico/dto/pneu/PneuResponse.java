@@ -11,8 +11,8 @@ import lombok.NoArgsConstructor;
 public class PneuResponse {
 
     private Long id;
-    private String numeroFogo;
-    private String marca;
-    private Float pressao;
+    private String fireNumber;
+    private String brand;
+    private Float pressure;
     private PneuStatusEnum status;
 }

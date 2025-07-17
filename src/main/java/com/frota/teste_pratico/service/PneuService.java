@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.service;
 
-import com.frota.teste_pratico.dto.pneu.InserirPneuRequest;
-import com.frota.teste_pratico.dto.pneu.InserirPneuResponse;
+import com.frota.teste_pratico.dto.pneu.InsertTireRequest;
+import com.frota.teste_pratico.dto.pneu.InsertTireResponse;
 import com.frota.teste_pratico.mapper.PneuMapper;
 import com.frota.teste_pratico.model.entities.Pneu;
 import com.frota.teste_pratico.model.exceptions.PneuException;
@@ -20,9 +20,9 @@ public class PneuService {
     private PneuRepository repo;
 
     @Transactional
-    public InserirPneuResponse cadastraPneu(InserirPneuRequest request) {
-        if (repo.findByNumeroFogo(request.getNumeroFogo()).isPresent()) {
-            throw new PneuException("Numero de fogo: " + request.getNumeroFogo() + " já existe");
+    public InsertTireResponse cadastraPneu(InsertTireRequest request) {
+        if (repo.findByNumeroFogo(request.getFireNumber()).isPresent()) {
+            throw new PneuException("Numero de fogo: " + request.getFireNumber() + " já existe");
         }
 
         Pneu pneu = repo.save(pneuMapper.toEntityFromInsertRequest(request));

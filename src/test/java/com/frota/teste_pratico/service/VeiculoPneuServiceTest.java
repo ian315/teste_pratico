@@ -1,7 +1,7 @@
 package com.frota.teste_pratico.service;
 
 import com.frota.teste_pratico.dto.pneu.PneuResponse;
-import com.frota.teste_pratico.dto.veiculo.ResponseVeiculo;
+import com.frota.teste_pratico.dto.veiculo.ResponseVehicle;
 import com.frota.teste_pratico.dto.veiculo_pneu.*;
 import com.frota.teste_pratico.mapper.PneuMapper;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
@@ -97,7 +97,7 @@ class VeiculoPneuServiceTest {
         when(veiculoPneuRepository.findByPosicao(2)).thenReturn(Optional.of(new VeiculoPneu()));
         when(veiculoPneuRepository.findByVeiculoIdAndPosicao(1L, 2)).thenReturn(Optional.empty());
 
-        when(veiculoMapper.toResponseFromInsertPneuEmVeiculo(veiculo)).thenReturn(mock(ResponseVeiculo.class)); // ou mock do response
+        when(veiculoMapper.toResponseFromInsertPneuEmVeiculo(veiculo)).thenReturn(mock(ResponseVehicle.class)); // ou mock do response
         when(pneuMapper.toInsertResponsePneuOnVeiculoFromEntity(pneu)).thenReturn(mock(PneuResponse.class));
 
         InserirPneuNoVeiculoValidandoPosicaoResponse response = veiculoPneuService.inserirPneuEmVeiculoComPosicao(request);

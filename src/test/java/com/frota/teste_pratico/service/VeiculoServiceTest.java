@@ -33,18 +33,18 @@ class VeiculoServiceTest {
 
     @Test
     void deveCadastrarVeiculoComSucesso() {
-        InserirVeiculoRequest request = new InserirVeiculoRequest();
-        request.setPlaca("ABC1234");
+        InsertVehicleRequest request = new InsertVehicleRequest();
+        request.setPlate("ABC1234");
 
         Veiculo veiculoEntity = new Veiculo();
-        InserirVeiculoResponse response = new InserirVeiculoResponse();
+        InsertVehicleResponse response = new InsertVehicleResponse();
 
         when(veiculoRepository.findByPlaca("ABC1234")).thenReturn(Optional.empty());
         when(veiculoMapper.toEntityFromInsertRequest(request)).thenReturn(veiculoEntity);
         when(veiculoRepository.save(veiculoEntity)).thenReturn(veiculoEntity);
         when(veiculoMapper.toResponseDtoFromEntity(veiculoEntity)).thenReturn(response);
 
-        InserirVeiculoResponse result = veiculoService.cadastrarVeiculo(request);
+        InsertVehicleResponse result = veiculoService.cadastrarVeiculo(request);
 
         assertEquals(response, result);
         verify(veiculoRepository).save(veiculoEntity);
@@ -52,8 +52,8 @@ class VeiculoServiceTest {
 
     @Test
     void deveLancarExcecaoSePlacaJaExistente() {
-        InserirVeiculoRequest request = new InserirVeiculoRequest();
-        request.setPlaca("XYZ9876");
+        InsertVehicleRequest request = new InsertVehicleRequest();
+        request.setPlate("XYZ9876");
 
         when(veiculoRepository.findByPlaca("XYZ9876")).thenReturn(Optional.of(new Veiculo()));
 
@@ -69,14 +69,14 @@ class VeiculoServiceTest {
         Veiculo v1 = new Veiculo();
         Veiculo v2 = new Veiculo();
 
-        BuscarTodosVeiculosResponse r1 = new BuscarTodosVeiculosResponse();
-        BuscarTodosVeiculosResponse r2 = new BuscarTodosVeiculosResponse();
+        SearchAllVehiclesResponse r1 = new SearchAllVehiclesResponse();
+        SearchAllVehiclesResponse r2 = new SearchAllVehiclesResponse();
 
         when(veiculoRepository.findAll()).thenReturn(List.of(v1, v2));
         when(veiculoMapper.toFindAllResponseDtoFromEntity(v1)).thenReturn(r1);
         when(veiculoMapper.toFindAllResponseDtoFromEntity(v2)).thenReturn(r2);
 
-        List<BuscarTodosVeiculosResponse> result = veiculoService.buscarTodosVeiculos();
+        List<SearchAllVehiclesResponse> result = veiculoService.buscarTodosVeiculos();
 
         assertEquals(2, result.size());
         assertTrue(result.containsAll(List.of(r1, r2)));
@@ -86,12 +86,12 @@ class VeiculoServiceTest {
     void deveRetornarVeiculoComPneusQuandoIdExiste() {
         Long id = 1L;
         Veiculo veiculo = new Veiculo();
-        BuscarVeiculoPorPlacaComPneusResponse response = new BuscarVeiculoPorPlacaComPneusResponse();
+        SearchVehicleByPlateWithTiresResponse response = new SearchVehicleByPlateWithTiresResponse();
 
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
         when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(response);
 
-        BuscarVeiculoPorPlacaComPneusResponse result = veiculoService.buscarVeiculoPorId(id);
+        SearchVehicleByPlateWithTiresResponse result = veiculoService.buscarVeiculoPorId(id);
 
         assertEquals(response, result);
     }
@@ -102,15 +102,15 @@ class VeiculoServiceTest {
         Veiculo veiculo = new Veiculo(
                 99L, "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
 
-        BuscarVeiculoPorPlacaComPneusResponse dto = new BuscarVeiculoPorPlacaComPneusResponse(
+        SearchVehicleByPlateWithTiresResponse dto = new SearchVehicleByPlateWithTiresResponse(
                 "PlacaTeste","MarcaTeste", 1000, VeiculoStatusEnum.ATIVO, 4, Collections.EMPTY_LIST);
 
         when(veiculoRepository.findById(id)).thenReturn(Optional.of(veiculo));
         when(veiculoMapper.toFindVeiculoWithPneusResponseFromEntity(veiculo)).thenReturn(dto);
 
-        BuscarVeiculoPorPlacaComPneusResponse response = veiculoService.buscarVeiculoPorId(id);
+        SearchVehicleByPlateWithTiresResponse response = veiculoService.buscarVeiculoPorId(id);
 
         assertNotNull(response);
-        assertTrue(response.getPneuList().isEmpty());
+        assertTrue(response.getTireList().isEmpty());
     }
 }

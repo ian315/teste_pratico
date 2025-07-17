@@ -8,10 +8,10 @@ import lombok.NoArgsConstructor;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class BuscarPneuSemVeiculoResponse {
+public class SearchTireWithNoVehicleResponse {
 
-    private Long numeroFogo;
-    private String marca;
-    private Float pressao;
+    private Long fireNumber;
+    private String brand;
+    private Float pressure;
     private PneuStatusEnum status;
 }

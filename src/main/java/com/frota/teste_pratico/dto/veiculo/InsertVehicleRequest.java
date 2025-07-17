@@ -10,20 +10,20 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirVeiculoRequest {
+public class InsertVehicleRequest {
 
     @NotNull(message = "Placa não pode ser nulo.")
-    private String placa;
+    private String plate;
 
     @NotNull(message = "Marca não pode ser nulo.")
-    private String marca;
+    private String brand;
 
     @NotNull(message = "Quilometragem não pode ser nulo.")
-    private int quilometragem;
+    private int mileage;
 
     @NotNull(message = "Status não pode ser nulo.")
     private VeiculoStatusEnum status;
 
     @NotNull(message = "quantidade de pneus não pode ser nulo.")
-    private int quantidadeDePneus;
+    private int tireQuantity;
 }

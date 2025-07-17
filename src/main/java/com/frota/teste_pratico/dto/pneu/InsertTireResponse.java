@@ -8,11 +8,11 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirPneuResponse {
+public class InsertTireResponse {
 
     private Long id;
-    private String numeroFogo;
-    private String marca;
-    private Float pressao;
+    private String fireNumber;
+    private String brand;
+    private Float pressure;
     private PneuStatusEnum status;
 }

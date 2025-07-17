@@ -8,12 +8,12 @@ import lombok.NoArgsConstructor;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class InserirVeiculoResponse {
+public class SearchAllVehiclesResponse {
 
     private Long id;
-    private String placa;
-    private String marca;
-    private int quilometragem;
+    private String plate;
+    private String brand;
+    private int mileage;
     private VeiculoStatusEnum status;
-    private int quantidadeDePneus;
+    private int tireQuantity;
 }

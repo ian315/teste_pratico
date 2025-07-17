@@ -1,9 +1,9 @@
 package com.frota.teste_pratico.service;
 
-import com.frota.teste_pratico.dto.veiculo.BuscarTodosVeiculosResponse;
-import com.frota.teste_pratico.dto.veiculo.BuscarVeiculoPorPlacaComPneusResponse;
-import com.frota.teste_pratico.dto.veiculo.InserirVeiculoRequest;
-import com.frota.teste_pratico.dto.veiculo.InserirVeiculoResponse;
+import com.frota.teste_pratico.dto.veiculo.SearchAllVehiclesResponse;
+import com.frota.teste_pratico.dto.veiculo.SearchVehicleByPlateWithTiresResponse;
+import com.frota.teste_pratico.dto.veiculo.InsertVehicleRequest;
+import com.frota.teste_pratico.dto.veiculo.InsertVehicleResponse;
 import com.frota.teste_pratico.mapper.VeiculoMapper;
 import com.frota.teste_pratico.model.entities.Veiculo;
 import com.frota.teste_pratico.model.exceptions.VeiculoException;
@@ -25,23 +25,23 @@ public class VeiculoService {
     private VeiculoRepository repo;
 
     @Transactional
-    public InserirVeiculoResponse cadastrarVeiculo(InserirVeiculoRequest veiculoRequest) {
-        if(repo.findByPlaca(veiculoRequest.getPlaca()).isPresent() ) {
-            throw new VeiculoException("Placa: " + veiculoRequest.getPlaca() + " já existente");
+    public InsertVehicleResponse cadastrarVeiculo(InsertVehicleRequest veiculoRequest) {
+        if(repo.findByPlaca(veiculoRequest.getPlate()).isPresent() ) {
+            throw new VeiculoException("Placa: " + veiculoRequest.getPlate() + " já existente");
         }
 
         Veiculo veiculo = repo.save(veiculoMapper.toEntityFromInsertRequest(veiculoRequest));
         return veiculoMapper.toResponseDtoFromEntity(veiculo);
     }
 
-    public List<BuscarTodosVeiculosResponse> buscarTodosVeiculos() {
+    public List<SearchAllVehiclesResponse> buscarTodosVeiculos() {
 
         return repo.findAll().stream()
                 .map(veiculoMapper::toFindAllResponseDtoFromEntity)
                 .collect(Collectors.toList());
     }
 
-    public BuscarVeiculoPorPlacaComPneusResponse buscarVeiculoPorId(Long id) {
+    public SearchVehicleByPlateWithTiresResponse buscarVeiculoPorId(Long id) {
         Veiculo veiculo = repo.findById(id)
                 .orElseThrow(() -> new VeiculoException("o Veiculo de ID: " + id + " não existe"));
 

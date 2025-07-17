@@ -11,12 +11,12 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-public class BuscarVeiculoPorPlacaComPneusResponse {
+public class SearchVehicleByPlateWithTiresResponse {
 
-    private String placa;
-    private String marca;
-    private int quilometragem;
+    private String plate;
+    private String brand;
+    private int mileage;
     private VeiculoStatusEnum status;
-    private int quantidadeDePneus;
-    private List<BuscarVeiculoPneuResponseSemVeiculo> pneuList;
+    private int tireQuantity;
+    private List<BuscarVeiculoPneuResponseSemVeiculo> tireList;
 }
