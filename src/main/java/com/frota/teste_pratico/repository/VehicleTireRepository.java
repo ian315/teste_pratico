@@ -7,13 +7,13 @@ import java.util.Optional;
 
 public interface VehicleTireRepository extends JpaRepository<VehicleTire, Long> {
 
-    Optional<VehicleTire> findByPosicao(int posicao);
+    Optional<VehicleTire> findByPosition(int posicao);
 
-    Optional<VehicleTire> findByVeiculoIdAndPosicao(Long veiculoId, int posicao);
+    Optional<VehicleTire> findByVehicleIdAndPosition(Long vehicleId, int position);
 
-    void deleteByVeiculoIdAndPneuId(Long veiculoId, Long pneuId);
+    void deleteByVehicleIdAndTireId(Long vehicleId, Long tireId);
 
-    Optional<VehicleTire> findByVeiculoIdAndPneuId(Long veiculoId, Long pneuId);
+    Optional<VehicleTire> findByVehicleIdAndTireId(Long vehicleId, Long tireId);
 
-    Optional<VehicleTire> findByPneuId(Long pneuId);
+    Optional<VehicleTire> findByTireId(Long tireId);
 }

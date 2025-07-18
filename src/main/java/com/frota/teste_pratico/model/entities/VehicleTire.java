@@ -18,20 +18,20 @@ public class VehicleTire {
     private Long id;
 
     @ManyToOne
-    @JoinColumn(name = "veiculo_id", nullable = false)
+    @JoinColumn(name = "vehicle_id", nullable = false)
     @JsonBackReference
     private Vehicle vehicle;
 
     @ManyToOne
-    @JoinColumn(name = "pneu_id", nullable = false)
+    @JoinColumn(name = "tire_id", nullable = false)
     private Tire tire;
 
-    @Column(name = "posicao_pneu", nullable = false)
-    private int posicao;
+    @Column(name = "tire_position", nullable = false)
+    private int position;
 
-    public VehicleTire(Vehicle vehicle, Tire tire, int posicao) {
+    public VehicleTire(Vehicle vehicle, Tire tire, int position) {
         this.vehicle = vehicle;
         this.tire = tire;
-        this.posicao = posicao;
+        this.position = position;
     }
 }

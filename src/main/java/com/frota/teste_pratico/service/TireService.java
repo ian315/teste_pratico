@@ -21,7 +21,7 @@ public class TireService {
 
     @Transactional
     public InsertTireResponse cadastraPneu(InsertTireRequest request) {
-        if (repo.findByNumeroFogo(request.getFireNumber()).isPresent()) {
+        if (repo.findByFireNumber(request.getFireNumber()).isPresent()) {
             throw new TireException("Numero de fogo: " + request.getFireNumber() + " já existe");
         }
 

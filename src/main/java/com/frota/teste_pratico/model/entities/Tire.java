@@ -7,7 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 @Entity
-@Table(name = "pneu")
+@Table(name = "tire")
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
@@ -17,13 +17,13 @@ public class Tire {
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "numero_fogo", nullable = false)
+    @Column(name = "fire_number", nullable = false)
     private Long fireNumber;
 
-    @Column(name = "marca", nullable = false)
+    @Column(name = "brand", nullable = false)
     private String brand;
 
-    @Column(name = "pressao", nullable = false)
+    @Column(name = "pressure", nullable = false)
     private Float pressure;
 
     //talvez um ponto de avaliação

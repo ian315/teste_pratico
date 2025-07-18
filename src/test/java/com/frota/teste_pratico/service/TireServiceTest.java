@@ -39,7 +39,7 @@ class TireServiceTest {
         Tire tireEntity = new Tire();
         InsertTireResponse expectedResponse = new InsertTireResponse();
 
-        when(tireRepository.findByNumeroFogo(123L)).thenReturn(Optional.empty());
+        when(tireRepository.findByFireNumber(123L)).thenReturn(Optional.empty());
         when(tireMapper.toEntityFromInsertRequest(request)).thenReturn(tireEntity);
         when(tireRepository.save(tireEntity)).thenReturn(tireEntity);
         when(tireMapper.toResponseDtoFromEntity(tireEntity)).thenReturn(expectedResponse);
@@ -55,7 +55,7 @@ class TireServiceTest {
         InsertTireRequest request = new InsertTireRequest();
         request.setFireNumber(456L);
 
-        when(tireRepository.findByNumeroFogo(456L)).thenReturn(Optional.of(new Tire()));
+        when(tireRepository.findByFireNumber(456L)).thenReturn(Optional.of(new Tire()));
 
         TireException exception = assertThrows(TireException.class, () -> {
             tireService.cadastraPneu(request);

@@ -15,30 +15,30 @@ import java.util.List;
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "veiculo")
+@Table(name = "vehicle")
 public class Vehicle {
 
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "placa", nullable = false)
+    @Column(name = "plate", nullable = false)
     private String plate;
 
-    @Column(name = "marca")
+    @Column(name = "brand")
     private String brand;
 
-    @Column(name = "quilometragem", nullable = false)
+    @Column(name = "mileage", nullable = false)
     private int mileage;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status",nullable = false)
     private VehicleStatusEnum status;
 
-    @Column(name = "quantidade_pneus", nullable = false)
+    @Column(name = "tire_quantity", nullable = false)
     private int tireQuantity;
 
-    @OneToMany(mappedBy = "veiculo", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
+    @OneToMany(mappedBy = "vehicle", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonManagedReference
     @ToString.Exclude
     private List<VehicleTire> tires = new ArrayList<>();

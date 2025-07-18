@@ -1,1 +1,1 @@
-CREATE TYPE pneu_status_enum AS ENUM ('EM_USO', 'DISPONIVEL');
+CREATE TYPE tire_status_enum AS ENUM ('EM_USO', 'DISPONIVEL');

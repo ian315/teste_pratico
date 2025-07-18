@@ -79,8 +79,8 @@ class VehicleTireServiceTest {
 
         when(vehicleRepository.findById(1L)).thenReturn(Optional.of(vehicle));
         when(tireRepository.findById(2L)).thenReturn(Optional.of(tire));
-        when(vehicleTireRepository.findByPosicao(2)).thenReturn(Optional.of(new VehicleTire()));
-        when(vehicleTireRepository.findByVeiculoIdAndPosicao(1L, 2)).thenReturn(Optional.of(new VehicleTire()));
+        when(vehicleTireRepository.findByPosition(2)).thenReturn(Optional.of(new VehicleTire()));
+        when(vehicleTireRepository.findByVehicleIdAndPosition(1L, 2)).thenReturn(Optional.of(new VehicleTire()));
 
         assertThrows(VehicleTireException.class, () -> vehicleTireService.inserirPneuEmVeiculoComPosicao(request));
     }
@@ -94,8 +94,8 @@ class VehicleTireServiceTest {
 
         when(vehicleRepository.findById(1L)).thenReturn(Optional.of(vehicle));
         when(tireRepository.findById(2L)).thenReturn(Optional.of(tire));
-        when(vehicleTireRepository.findByPosicao(2)).thenReturn(Optional.of(new VehicleTire()));
-        when(vehicleTireRepository.findByVeiculoIdAndPosicao(1L, 2)).thenReturn(Optional.empty());
+        when(vehicleTireRepository.findByPosition(2)).thenReturn(Optional.of(new VehicleTire()));
+        when(vehicleTireRepository.findByVehicleIdAndPosition(1L, 2)).thenReturn(Optional.empty());
 
         when(vehicleMapper.toResponseFromInsertPneuEmVeiculo(vehicle)).thenReturn(mock(ResponseVehicle.class)); // ou mock do response
         when(tireMapper.toInsertResponsePneuOnVeiculoFromEntity(tire)).thenReturn(mock(PneuResponse.class));
@@ -113,7 +113,7 @@ class VehicleTireServiceTest {
     void deveLancarExcecaoAoRemoverSeNaoExisteVinculo() {
         removeTireFromVehicleRequest request = new removeTireFromVehicleRequest(1L, 2L);
 
-        when(vehicleTireRepository.findByVeiculoIdAndPneuId(1L, 2L)).thenReturn(Optional.empty());
+        when(vehicleTireRepository.findByVehicleIdAndTireId(1L, 2L)).thenReturn(Optional.empty());
 
         assertThrows(VehicleTireException.class, () -> vehicleTireService.removerPneuDoVeiculo(request));
     }
@@ -122,10 +122,10 @@ class VehicleTireServiceTest {
     void deveRemoverVinculoComSucesso() {
         removeTireFromVehicleRequest request = new removeTireFromVehicleRequest(1L, 2L);
 
-        when(vehicleTireRepository.findByVeiculoIdAndPneuId(1L, 2L)).thenReturn(Optional.of(new VehicleTire()));
+        when(vehicleTireRepository.findByVehicleIdAndTireId(1L, 2L)).thenReturn(Optional.of(new VehicleTire()));
 
         assertDoesNotThrow(() -> vehicleTireService.removerPneuDoVeiculo(request));
 
-        verify(vehicleTireRepository).deleteByVeiculoIdAndPneuId(1L, 2L);
+        verify(vehicleTireRepository).deleteByVehicleIdAndTireId(1L, 2L);
     }
 }

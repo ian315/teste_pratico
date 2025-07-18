@@ -40,15 +40,15 @@ public class VehicleTireService {
         Vehicle vehicle = vehicleRepository.findById(request.getVeiculoId()).orElseThrow(() -> new VehicleTireException("Veiculo não existe"));
         Tire tire = tireRepository.findById(request.getPneuId()).orElseThrow(() -> new VehicleTireException("Pneu não existe"));
 
-        if (vehicle.getTireQuantity() < request.getPosition()) {
+        if (request.getPosition() <= 0 || vehicle.getTireQuantity() < request.getPosition()) {
             throw new VehicleTireException("Posição Inválida");
         }
 
-        if (vehicleTireRepository.findByVeiculoIdAndPosicao(request.getVeiculoId(), request.getPosition()).isPresent()) {
+        if (vehicleTireRepository.findByVehicleIdAndPosition(request.getVeiculoId(), request.getPosition()).isPresent()) {
             throw new VehicleTireException("Ja existe um pneu nessa posição");
         }
 
-        if (vehicleTireRepository.findByPneuId(request.getPneuId()).isPresent()) {
+        if (vehicleTireRepository.findByTireId(request.getPneuId()).isPresent()) {
             throw new VehicleTireException("Ja existe um veiculo com esse pneu");
         }
 
@@ -64,9 +64,9 @@ public class VehicleTireService {
     @Transactional
     public void removerPneuDoVeiculo(removeTireFromVehicleRequest request) {
 
-        if(vehicleTireRepository.findByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId()).isEmpty())
+        if(vehicleTireRepository.findByVehicleIdAndTireId(request.getVeiculoId(), request.getPneuId()).isEmpty())
             throw  new VehicleTireException("Esse veículo e pneu não estão vinculados");
 
-        vehicleTireRepository.deleteByVeiculoIdAndPneuId(request.getVeiculoId(), request.getPneuId());
+        vehicleTireRepository.deleteByVehicleIdAndTireId(request.getVeiculoId(), request.getPneuId());
     }
 }

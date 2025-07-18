@@ -7,5 +7,5 @@ import java.util.Optional;
 
 public interface TireRepository extends JpaRepository<Tire, Long> {
 
-    Optional<Tire> findByNumeroFogo(Long numeroFogo);
+    Optional<Tire> findByFireNumber(Long fireNumber);
 }

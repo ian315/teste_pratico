@@ -1,11 +1,11 @@
-CREATE TABLE IF NOT EXISTS veiculo_pneu (
+CREATE TABLE IF NOT EXISTS vehicle_tire (
     id SERIAL PRIMARY KEY,
-    veiculo_id BIGINT NOT NULL,
-    pneu_id BIGINT NOT NULL,
-    posicao_pneu BIGINT NOT NULL,
+    vehicle_id BIGINT NOT NULL,
+    tire_id BIGINT NOT NULL,
+    tire_position BIGINT NOT NULL,
 
-    CONSTRAINT fk_veiculo FOREIGN KEY (veiculo_id) REFERENCES veiculo(id),
-    CONSTRAINT fk_pneu FOREIGN KEY (pneu_id) REFERENCES pneu(id),
+    CONSTRAINT fk_vehicle FOREIGN KEY (vehicle_id) REFERENCES vehicle(id),
+    CONSTRAINT fk_tire FOREIGN KEY (tire_id) REFERENCES tire(id),
 
-    CONSTRAINT uk_pneu UNIQUE (pneu_id)
+    CONSTRAINT uk_tire UNIQUE (tire_id)
 );

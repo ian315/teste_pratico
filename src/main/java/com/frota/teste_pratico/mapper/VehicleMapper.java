@@ -19,7 +19,7 @@ public interface VehicleMapper {
 
     SearchAllVehiclesResponse toFindAllResponseDtoFromEntity(Vehicle vehicle);
 
-    @Mapping(target = "pneuList", ignore = true)
+    @Mapping(target = "tireList", ignore = true)
     SearchVehicleByPlateWithTiresResponse toFindVeiculoByPlacaWithPneusResponseFromEntity(Vehicle vehicle);
 
     ResponseVehicle toResponseFromInsertPneuEmVeiculo (Vehicle vehicle);
@@ -44,7 +44,7 @@ public interface VehicleMapper {
                                 vp.getTire().getBrand(),
                                 vp.getTire().getPressure(),
                                 vp.getTire().getStatus()),
-        vp.getPosicao())).toList());
+        vp.getPosition())).toList());
 
         return searchVehicleByPlateWithTiresResponse;
     }

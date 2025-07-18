@@ -26,7 +26,7 @@ public class VehicleService {
 
     @Transactional
     public InsertVehicleResponse cadastrarVeiculo(InsertVehicleRequest veiculoRequest) {
-        if(repo.findByPlaca(veiculoRequest.getPlate()).isPresent() ) {
+        if(repo.findByPlate(veiculoRequest.getPlate()).isPresent() ) {
             throw new VehicleException("Placa: " + veiculoRequest.getPlate() + " já existente");
         }
 

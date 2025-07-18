@@ -1,10 +1,10 @@
-CREATE TABLE IF NOT EXISTS veiculo (
+CREATE TABLE IF NOT EXISTS vehicle (
     id SERIAL PRIMARY KEY,
-    placa VARCHAR(50) NOT NULL,
-    marca VARCHAR(50) NOT NULL,
-    quilometragem INTEGER NOT NULL CHECK (quilometragem >= 0),
+    plate VARCHAR(50) NOT NULL,
+    brand VARCHAR(50) NOT NULL,
+    mileage INTEGER NOT NULL CHECK (mileage >= 0),
     status VARCHAR(50) NOT NULL,
-    quantidade_pneus INTEGER NOT NULL,
+    tire_quantity INTEGER NOT NULL,
 
-    CONSTRAINT uk_placa UNIQUE (placa)
+    CONSTRAINT uk_plate UNIQUE (plate)
 );

@@ -39,7 +39,7 @@ class VehicleServiceTest {
         Vehicle vehicleEntity = new Vehicle();
         InsertVehicleResponse response = new InsertVehicleResponse();
 
-        when(vehicleRepository.findByPlaca("ABC1234")).thenReturn(Optional.empty());
+        when(vehicleRepository.findByPlate("ABC1234")).thenReturn(Optional.empty());
         when(vehicleMapper.toEntityFromInsertRequest(request)).thenReturn(vehicleEntity);
         when(vehicleRepository.save(vehicleEntity)).thenReturn(vehicleEntity);
         when(vehicleMapper.toResponseDtoFromEntity(vehicleEntity)).thenReturn(response);
@@ -55,7 +55,7 @@ class VehicleServiceTest {
         InsertVehicleRequest request = new InsertVehicleRequest();
         request.setPlate("XYZ9876");
 
-        when(vehicleRepository.findByPlaca("XYZ9876")).thenReturn(Optional.of(new Vehicle()));
+        when(vehicleRepository.findByPlate("XYZ9876")).thenReturn(Optional.of(new Vehicle()));
 
         assertThrows(VehicleException.class, () -> {
             vehicleService.cadastrarVeiculo(request);

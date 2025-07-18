@@ -1,1 +1,1 @@
-CREATE TYPE veiculo_status_enum AS ENUM ('ATIVO', 'INATIVO');
+CREATE TYPE vehicle_status_enum AS ENUM ('ATIVO', 'INATIVO');
